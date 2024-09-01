@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { ClerkProvider, SignedIn, SignedOut, SignIn, SignInButton, UserButton } from "@clerk/nextjs";
+import TopNavBar from "./Components/top-nav-bar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,8 +17,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+  <ClerkProvider>
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className="mx-auto max-w-full">
+        <TopNavBar/>
+        {children}
+      </body>
     </html>
+  </ClerkProvider>
   );
 }

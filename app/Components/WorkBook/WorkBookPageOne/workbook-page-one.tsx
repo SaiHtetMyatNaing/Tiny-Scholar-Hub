@@ -8,7 +8,6 @@ import ListeningSection from './listening-section';
 
 const WBPageOne = () => {
    
-
   return (
      <Box className='border-gray-400 flex flex-col gap-4 justify-center mx-auto max-w-3xl border-[2px] mt-7 p-1 px-3'>
 
@@ -18,7 +17,7 @@ const WBPageOne = () => {
          <WordSearchTemplate word='က'/> 
          <PictionarySection/>
       </Box>
-\
+
       <ListeningSection />
        <WorkSheetFooter/>
      </Box>
