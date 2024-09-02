@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import {
   ClerkProvider,
@@ -8,6 +7,7 @@ import { Lexend } from "next/font/google";
 
 import TopNavBar from "./Components/top-nav-bar";
 import Whiteboard from "./Components/whiteboard";
+import { Box } from "@mui/material";
 
 const inter = Lexend({ subsets: ["latin"] });
 
@@ -26,9 +26,9 @@ export default function RootLayout({
       <ClerkProvider>
         <body className={inter.className}>
           <TopNavBar />
-          <div className="w-full max-w-full">
+          <article className="w-full max-w-full">
             {children}
-          </div>
+          </article>
           <Whiteboard />
         </body>
       </ClerkProvider>

@@ -49,3 +49,17 @@
 .underline-on-hover:hover::after {
   width: 100%; /* Full underline on hover */
 }
+
+
+.animated-div {
+  animation: upAndDown 2s infinite alternate; /* Adjust duration and timing as needed */
+}
+
+@keyframes upAndDown {
+  0% {
+    transform: translateY(0); /* Start at original position */
+  }
+  100% {
+    transform: translateY(-20px); /* Move 20px upwards */
+  }
+}

@@ -24,7 +24,7 @@ export default function Cards() {
   return (
     <Box className="flex max-w-6xl gap-4  flex-wrap items-center  mx-auto">
       <Typography
-        component={motion.div}
+        component={motion.header}
         initial={{ opacity: 1 }}
         animate={fadePosition! > 50 ? { opacity: 0 } : { opacity: 1 }}
         className="w-full text-center  text-black/25"
@@ -33,17 +33,18 @@ export default function Cards() {
         {"Explore Our Learning Resources"}
       </Typography>
 
-      <Box className="flex w-full max-w-full mx-auto flex-wrap justify-between gap-2 md:flex-nowrap ">
+      <Box className="flex w-full mt-3 max-w-full mx-auto flex-wrap justify-between gap-2 md:flex-nowrap ">
         {items.map((item, i) => {
           return (
             <Paper
-              component={motion.div}
+              component={motion.span}
               elevation={3}
               key={i}
               initial={{ opacity: 0, scale: 0.4 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1 }}
-              className="flex items-center overflow-hidden border cursor-pointer rounded-xl border-[#f5c13d] justify-center object-contain gap-1 flex-col duration-100 hover:scale-75 transition-all"
+              transition={{ duration: 0.4 }}
+              whileHover={{ scale : 0.94  }}
+              className="flex items-center overflow-hidden select-none border cursor-pointer rounded-xl border-[#f5c13d] justify-center object-contain gap-1 flex-col"
             >
               <Box className="h-60 w-[17em]">
                 <Image

@@ -26,8 +26,6 @@ export default function TopNavBar() {
     },
   ];
 
-
-  
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed" sx={{ boxShadow: "none" }}>
@@ -44,8 +42,6 @@ export default function TopNavBar() {
           <Typography
             variant="h6"
             noWrap
-            component="div"
-
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
             className="cursor-pointer"
             onClick={() => router.push("/")}
@@ -57,7 +53,6 @@ export default function TopNavBar() {
             {pages.map((page, index) => {
               return (
                 <Typography
-                  component="div"
                   key={index}
                   sx={{
                     display: { xs: "none", sm: "block" },
