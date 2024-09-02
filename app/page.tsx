@@ -1,13 +1,16 @@
-import { Container } from "@mui/material"
-import Canvas from "./Components/white-board"
-import Cards from "./Components/Home/cards"
-
+import { Box, Container } from "@mui/material";
+import Cards from "./Components/Home/cards";
+import TopWavyBg from "./Components/Home/top-wavy-bg";
+import BottomWavyBg from "./Components/Home/bottom-wavy-bg";
 
 const Home = () => {
-
   return (
-       <Cards/>
-  )
-}
+    <Box className="w-full">
+      <TopWavyBg />
+      <Cards />
+      <BottomWavyBg/>
+    </Box>
+  );
+};
 
-export default Home
+export default Home;

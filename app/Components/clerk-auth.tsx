@@ -1,10 +1,22 @@
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
+import { Box } from "@mui/material";
 
 const ClerkAuth = () => {
   return (
     <>
       <SignedOut>
-        <SignInButton />
+        <Box
+          className="w-20 flex items-center justify-center h-10 rounded-md border-[#f3f0e8] border-2"
+          sx={{
+            color: "black",
+            boxShadow: "none",
+            ":hover": {
+              backgroundColor: "var(--primary-gold-foreground)",
+            },
+          }}
+        >
+          <SignInButton />
+        </Box>
       </SignedOut>
 
       <SignedIn>

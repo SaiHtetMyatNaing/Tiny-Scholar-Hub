@@ -8,34 +8,30 @@ import { DrawRounded } from "@mui/icons-material";
 import LeftDrawer from "./drawer";
 import { useRouter } from "next/navigation";
 import ClerkAuth from "./clerk-auth";
-import { useAuth } from "@clerk/nextjs";
-import { Skeleton } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useMotionValueEvent, useScroll } from "framer-motion"
+import { useState } from "react";
 
 export default function TopNavBar() {
   const router = useRouter();
-  const { userId, isLoaded } = useAuth();
   const pages = [
     { id: 1, title: "Home", path: "/", icon: <DrawRounded /> },
     { id: 2, title: "Workbook", path: "/workbook", icon: <DrawRounded /> },
     { id: 3, title: "Flashcards", path: "/flashcards", icon: <DrawRounded /> },
+    { id: 4, title: "Story", path: "/stories", icon: <DrawRounded /> },
     {
-      id: 3,
+      id: 5,
       title: "Lesson Plan",
       path: "/lesson-plan",
       icon: <DrawRounded />,
     },
   ];
 
+
+  
   return (
-    <Box sx={{ flexGrow: 1 }} className="md:mb-20">
-      <AppBar
-        position="fixed"
-        sx={{
-          boxShadow: "0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px ",
-        }}
-      >
-        <Toolbar className="text-black bg-white">
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="fixed" sx={{ boxShadow: "none" }}>
+        <Toolbar className="text-black bg-[#ffd700] backdrop-blur-lg">
           <IconButton
             size="small"
             edge="start"
@@ -49,11 +45,12 @@ export default function TopNavBar() {
             variant="h6"
             noWrap
             component="div"
+
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
             className="cursor-pointer"
             onClick={() => router.push("/")}
           >
-            Scholar Hub
+            Tiny Scholar Hub
           </Typography>
 
           <Box className="flex items-center justify-between max-w-5xl gap-6">
@@ -73,7 +70,7 @@ export default function TopNavBar() {
                 </Typography>
               );
             })}
-              <ClerkAuth />
+            <ClerkAuth />
           </Box>
         </Toolbar>
       </AppBar>

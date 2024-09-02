@@ -3,12 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --primary-gold: hsl(43 90% 60%);
+  --primary-gold: #f5c13d;
   --primary-gold-foreground: 0 0% 0%; /* Black text for contrast */
   --secondary-light-gold : #f3f0e8;
   --tertiary-gold : #F4F1E7 ;
 }
-
 
 .swiper {
   width: 100%;
@@ -43,7 +42,7 @@
   height: 2px; /* Adjust underline thickness as needed */
   bottom: 0; /* Position at the bottom of the text */
   left: 0;
-  background-color: var(--primary-gold); /* Inherits text color */
+  background-color: white; /* Inherits text color */
   transition: width 0.5s ease; /* Adjust duration for desired speed */
 }
 
