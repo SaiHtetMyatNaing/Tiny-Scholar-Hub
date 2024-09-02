@@ -39,7 +39,7 @@ import {
     };
   
     return (
-      <div className="absolute top-20 left-56 bg-white max-w-full w-[56em] z-[1000] h-[40em]">
+      <div className="absolute top-20 md:left-56 bg-white max-w-full w-[30em] md:w-[56em] z-[1000] h-[40em]">
         <div className="flex flex-wrap">
           <Button type="button" disabled={!eraseMode} onClick={handlePenClick}>
             Draw

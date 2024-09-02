@@ -1,11 +1,12 @@
+'use client'
 import { Box } from "@mui/material";
 import React, { useEffect, useState } from "react";
-
 import Image from "next/image";
-import supabase from "@/app/utils/supabase";
 import WorksheetHeader from "../workbook-header";
 import MatchingSection from "./matching-section";
 import WorkSheetFooter from "../workbook-footer";
+import { createAuthenticatedClient } from "@/app/utils/supabase-client";
+import { useAuth } from "@clerk/nextjs";
 
 interface DataRecord {
   created_at: string | null;
@@ -18,25 +19,15 @@ interface DataRecord {
 }
 const WBPageTwo = () => {
     const [ item , setItem ] = useState<DataRecord[] | null>(null);
-
-    useEffect(()=>{
-      async function fetchData() {
-        const data  = await supabase
-            .from('svg-storage')
-            .select('*')
-            setItem(data.data);
-        }
-      fetchData()
-    } , [])
   
 
   return (
     <Box className="border-gray-400  flex flex-col gap-4 justify-center mx-auto max-w-3xl border-[2px] mt-7 p-1 px-3">
       <WorksheetHeader />
-        {item && item.length > 0 && item.map((i)=> {
+        {item && item.length && item.length > 0 && item.map((i)=> {
           return (
             <div key={i.id}>
-               <Image alt='image' width={200} height={200} src={i.svg_content!}/>
+                <Image alt='image' width={200} height={200} className="w-56 h-56"  src='/Logo.png'/>
             </div>
           )
         })}
@@ -44,6 +35,6 @@ const WBPageTwo = () => {
       <WorkSheetFooter />
     </Box>
   );
-};
+};  
 
 export default WBPageTwo;

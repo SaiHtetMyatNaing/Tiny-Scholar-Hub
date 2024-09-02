@@ -1,3 +1,4 @@
+'use client'
 import {Box} from '@mui/material';
 import WorksheetHeader from '../workbook-header';
 import WordSearchTemplate from './word-search-section';
@@ -13,7 +14,7 @@ const WBPageOne = () => {
 
       <WorksheetHeader/>
 
-      <Box className='flex flex-wrap gap-4 sm:flex-nowrap'>
+      <Box className='flex flex-wrap  gap-5 sm:flex-nowrap'>
          <WordSearchTemplate word='က'/> 
          <PictionarySection/>
       </Box>
@@ -22,6 +23,7 @@ const WBPageOne = () => {
        <WorkSheetFooter/>
      </Box>
   );
+
 };
 
 export default WBPageOne;

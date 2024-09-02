@@ -1,6 +1,18 @@
-import { clerkMiddleware } from "@clerk/nextjs/server";
+import { clerkMiddleware, createRouteMatcher} from "@clerk/nextjs/server";
+import { NextRequest } from "next/server";
 
-export default clerkMiddleware();
+
+const isProtectedRoute = createRouteMatcher([
+  '/workbook',
+  '/admin-dashboard'
+]);
+
+export default clerkMiddleware((auth , req)=> {
+  if(isProtectedRoute(req)) auth().protect()
+}
+);
+
+
 
 export const config = {
   matcher: [
@@ -10,3 +22,4 @@ export const config = {
     '/(api|trpc)(.*)',
   ],
 };
+

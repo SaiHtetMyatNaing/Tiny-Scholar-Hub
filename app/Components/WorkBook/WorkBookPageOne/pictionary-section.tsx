@@ -1,8 +1,11 @@
-import { Box, Grid } from "@mui/material";
+'use client'
 import React, { ReactNode, useState } from "react";
 import { WordItem } from "@/app/lib/type";
 import { speakText } from "@/app/lib/myanmar-speect";
 import Image from "next/image";
+import { Box } from "@mui/material";
+import { VolumeUp } from "@mui/icons-material";
+import Grid from '@mui/material/Grid2';
 
 
 const PictionarySection = () => {
@@ -32,33 +35,32 @@ const PictionarySection = () => {
   }
 
   return (
-    <Grid
-      container
-      rowGap={2}
-      className="mt-3 space-y-2 md:max-w-md sm:space-y-8 md:space-y-6"
-    >
+    <Box
+      className="mt-4 ml-2 md:ml-0 flex-col gap-10  sm:flex-nowrap md:max-w-lg flex-wrap" >
       <Box
         onClick={() => speakText(questions)}
-        className="cursor-pointer w-full  sm:ml-0 text-md sm:text-lg md:text-[1.20em]"
+        className="cursor-pointer w-full  sm:ml-0 text-lg sm:text-xl md:text-[1.2em]"
       >
         {questions} 
-        {/* <VolumeUp /> */}
+        <VolumeUp />
       </Box>
+
+      <Grid container className='mx-auto'>
       {words.map((word) => {
         return (
           <Grid
-            item
-            xs={4}
+            size={4}
             key={word.id}
             onClick={() => speakText(word.item)}
-            className="text-[16px]"
+            className="text-[16px] mt-6"
           >
-            <Image src={word.image} alt="word-image" height={200} width={200} className="w-20 cursor-pointer sm:w-24" />
+            <Image src={word.image} alt="word-image" height={100} width={100} className="w-20 cursor-pointer sm:w-24" />
             <span className="sm:text-[1em]">{colorFirstChar(word.item)}</span>
           </Grid>
         );
       })}
-    </Grid>
+      </Grid>
+    </Box>
   );
 };
 

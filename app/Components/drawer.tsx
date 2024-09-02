@@ -1,3 +1,4 @@
+'use client'
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
@@ -13,6 +14,7 @@ import { DrawRounded } from "@mui/icons-material";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useSideBarStore } from "../store/useSideBarStore";
+import AlertDialog from "./canvas";
 
 export default function LeftDrawer() {
   const [open, setOpen] = React.useState(false);
@@ -22,7 +24,7 @@ export default function LeftDrawer() {
     {
       id: 1,
       title: "Whiteboard",
-      handleClick: toggleWhiteBoard,
+      handleClick : toggleWhiteBoard,
       icon: <DrawRounded />,
     },
   ];
@@ -51,7 +53,7 @@ export default function LeftDrawer() {
 
   const DrawerList = (
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
-      <List>
+      <Box>     <List>
         {pages.map((page, index) => (
           <ListItem key={index} disablePadding>
             <ListItemButton
@@ -73,11 +75,13 @@ export default function LeftDrawer() {
           <ListItem key={item.id} className="flex items-center" disablePadding>
             <ListItemButton onClick={item.handleClick}>
               <ListItemIcon>{item.icon}</ListItemIcon>
-              <ListItemText primary={item.title} />
+              <ListItemText primary={item.title}  />
             </ListItemButton>
           </ListItem>
         ))}
       </List>
+      </Box>
+      
     </Box>
   );
 

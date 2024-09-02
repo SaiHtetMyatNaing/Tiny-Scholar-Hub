@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -8,9 +8,13 @@ import { DrawRounded } from "@mui/icons-material";
 import LeftDrawer from "./drawer";
 import { useRouter } from "next/navigation";
 import ClerkAuth from "./clerk-auth";
+import { useAuth } from "@clerk/nextjs";
+import { Skeleton } from "@mui/material";
+import { useEffect, useState } from "react";
 
 export default function TopNavBar() {
-    const router = useRouter();
+  const router = useRouter();
+  const { userId, isLoaded } = useAuth();
   const pages = [
     { id: 1, title: "Home", path: "/", icon: <DrawRounded /> },
     { id: 2, title: "Workbook", path: "/workbook", icon: <DrawRounded /> },
@@ -69,7 +73,7 @@ export default function TopNavBar() {
                 </Typography>
               );
             })}
-            <ClerkAuth/>
+              <ClerkAuth />
           </Box>
         </Toolbar>
       </AppBar>

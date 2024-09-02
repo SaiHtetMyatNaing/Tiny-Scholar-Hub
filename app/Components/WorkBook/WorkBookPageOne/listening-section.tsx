@@ -1,3 +1,4 @@
+'use client'
 import { Box, Input } from "@mui/material";
 import React, { useCallback } from "react";
 import Image from "next/image";

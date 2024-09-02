@@ -5,7 +5,7 @@
 :root {
   --primary-gold: hsl(43 90% 60%);
   --primary-gold-foreground: 0 0% 0%; /* Black text for contrast */
-  --secondary-light-gold : 44  31% 93%;
+  --secondary-light-gold : #f3f0e8;
   --tertiary-gold : #F4F1E7 ;
 }
 
