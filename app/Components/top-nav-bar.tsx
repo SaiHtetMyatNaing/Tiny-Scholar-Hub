@@ -24,15 +24,7 @@ export default function TopNavBar() {
       path: "/lesson-plan",
       icon: <DrawRounded />,
     },
-  ];
-  const [isMounted, setIsMounted] = useState(false); // State to track if component has mounted
-  // Effect to update mounted state after initial render
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-  if (!isMounted) {
-    return null;  // Return null on server-side and first client-side render
-  }
+  ];  
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed" sx={{ boxShadow: "none" }}>
