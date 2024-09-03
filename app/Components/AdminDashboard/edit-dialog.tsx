@@ -8,6 +8,7 @@ import { TransitionProps } from "@mui/material/transitions";
 import { DialogTitle } from "@mui/material";
 import EditForm from "../Form/edit-form";
 import { EditFormProps } from "../Form/create-form";
+import { DangerousOutlined } from "@mui/icons-material";
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -60,10 +61,10 @@ export default function EditDialogSlide({ formData }: EditFormProps) {
             height={60}
             className="flex justify-end w-full cursor-pointer"
           >
-            {/* <DangerousOutline
+            <DangerousOutlined
               onClick={handleClose}
               className="-mr-5 cursor-pointer hover:text-gray-500"
-            /> */}
+            />
           </DialogTitle>
           <EditForm formData={formData} />
         </DialogContent>

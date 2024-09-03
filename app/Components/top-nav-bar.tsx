@@ -6,13 +6,14 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { DrawRounded } from "@mui/icons-material";
 import LeftDrawer from "./drawer";
-import { useRouter } from "next/navigation";
 import ClerkAuth from "./clerk-auth";
 import { useMotionValueEvent, useScroll } from "framer-motion"
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 export default function TopNavBar() {
-  const router = useRouter();
+  const pathname = usePathname();
   const pages = [
     { id: 1, title: "Home", path: "/", icon: <DrawRounded /> },
     { id: 2, title: "Workbook", path: "/workbook", icon: <DrawRounded /> },
@@ -43,7 +44,6 @@ export default function TopNavBar() {
             noWrap
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
             className="cursor-pointer"
-            onClick={() => router.push("/")}
           >
             Tiny Scholar Hub
           </Typography>
@@ -51,17 +51,19 @@ export default function TopNavBar() {
           <Box className="flex items-center justify-between max-w-5xl gap-6">
             {pages.map((page, index) => {
               return (
+                  
+                <Link 
+                className={`link ${pathname === page.path ? 'active' : ''}`}
+                href={page.path} key={index} >
                 <Typography
-                  key={index}
                   sx={{
                     display: { xs: "none", sm: "block" },
                     fontSize: 17,
                   }}
-                  className="cursor-pointer underline-on-hover "
-                  onClick={() => router.push(page.path)}
-                >
+                  className="cursor-pointer underline-on-hover">
                   {page.title}
                 </Typography>
+                </Link>
               );
             })}
             <ClerkAuth />

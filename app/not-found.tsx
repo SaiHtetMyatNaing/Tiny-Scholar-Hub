@@ -1,10 +1,16 @@
+'use client'
 import { Button } from "@mui/material";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <div className="mx-auto max-w-2xl flex items-center  justify-between flex-col gap-10">
+    <motion.div 
+     initial={{ opacity : 0 , scale : 0.6  }}
+     animate={{ opacity : 1, scale : 1}}
+     transition={ {duration : 0.7}}
+    className="mx-auto max-w-2xl flex items-center  mt-20 justify-between flex-col gap-10">
       <Image
         width={550}
         height={400}
@@ -14,10 +20,10 @@ export default function NotFound() {
       />
       <Button
         variant="outlined"
-        className="hover:bg-[#f5c13d] text-black border-1 border-[#f5c13d]"
+        sx={{  ":hover" : { borderColor : "#f5c13d" , text : 'white'}  , color : '#f5c13d' , borderColor : "#f5c13d" , border : 1} }
       >
         <Link href="/">Return Home</Link>
       </Button>
-    </div>
+    </motion.div>
   );
 }

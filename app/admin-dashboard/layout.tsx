@@ -14,7 +14,7 @@ export default function WorkBookLayout({
   return (
       <main>
         <TopNavBar />
-        <section className="mt-16 px-2">
+        <section className="mt-16 mx-auto max-w-8xl px-2">
             {children}
         </section>
       </main>

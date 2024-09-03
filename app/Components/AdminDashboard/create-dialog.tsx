@@ -7,6 +7,7 @@ import Slide from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
 import { DialogTitle } from "@mui/material";
 import CreateForm from "../Form/create-form";
+import { DangerousOutlined } from "@mui/icons-material";
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -56,10 +57,10 @@ export default function CreateDialogSlide() {
             height={60}
             className="flex justify-end w-full cursor-pointer"
           >
-            {/* <DangerousOutlined
+            <DangerousOutlined
               onClick={handleClose}
               className="-mr-5 cursor-pointer hover:text-gray-500"
-            /> */}
+            />
           </DialogTitle>
           <CreateForm />
         </DialogContent>

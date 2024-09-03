@@ -6,6 +6,7 @@ import { WordItem } from "@/app/lib/type";
 import { englishNumeralToMyanmar } from "@/app/lib/myanmar-numerals";
 import { speakText } from "@/app/lib/myanmar-speect";
 import {shuffle} from 'lodash'
+import { VolumeUp } from "@mui/icons-material";
 
 const ListeningSection = () => {
   const words: WordItem[] = [
@@ -46,7 +47,7 @@ const ListeningSection = () => {
         }}
       >
         {instruction} 
-        {/* <VolumeUp className="text-inherit" /> */}
+        <VolumeUp className="text-inherit" />
       </Box>
 
       <Box className="flex flex-wrap items-center justify-between max-w-sm gap-5 mx-auto md:max-w-lg">

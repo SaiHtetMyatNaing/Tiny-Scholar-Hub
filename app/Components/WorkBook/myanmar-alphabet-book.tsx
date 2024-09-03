@@ -7,10 +7,15 @@ import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 import WBPageOne from "./WorkBookPageOne/workbook-page-one";
 import WBPageTwo from "./WorkBookPageTwo/workbook-page-two";
+import { motion} from "framer-motion";
 
 const MyanmarAlphabetWorkbook = () => {
   return (
-    <div className="relative w-full max-h-dvh ">
+    <motion.div
+    initial={{ opacity : 0 , y : 60 }}
+    animate={{ opacity : 1 , y : 0}}
+    transition={{duration : 0.8}}
+    className="relative w-full max-h-dvh ">
       <Swiper
         cssMode={true}
         navigation={true}
@@ -27,7 +32,7 @@ const MyanmarAlphabetWorkbook = () => {
           <WBPageTwo />
         </SwiperSlide>
       </Swiper>
-    </div>
+    </motion.div>
   );
 };
 
