@@ -22,37 +22,36 @@ export default function Cards() {
   useMotionValueEvent(scrollY, "change", handleScrollChange);
 
   return (
-    <Box className="flex max-w-6xl gap-4  flex-wrap items-center  mx-auto">
+    <Box className="flex max-w-6xl gap-4 sm:mt-14 md:mt-0 flex-wrap items-center  mx-auto p-2">
       <Typography
         component={motion.header}
         initial={{ opacity: 1 }}
         animate={fadePosition! > 50 ? { opacity: 0 } : { opacity: 1 }}
-        className="w-full text-center  text-black/25"
-        variant="h4"
-      >
+        className="w-full text-center text-xl sm:text-2xl md:text-3xl text-black/25">
         {"Explore Our Learning Resources"}
       </Typography>
 
-      <Box className="flex w-full mt-3 max-w-full mx-auto flex-wrap justify-between gap-2 md:flex-nowrap ">
+      <Box className="flex mt-3 items-center flex-wrap justify-between gap-2 ">
         {items.map((item, i) => {
           return (
             <Paper
-              component={motion.span}
+              component={motion.div}
               elevation={3}
               key={i}
               initial={{ opacity: 0, scale: 0.4 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.4 }}
               whileHover={{ scale : 0.94  }}
-              className="flex items-center overflow-hidden select-none border cursor-pointer rounded-xl border-[#f5c13d] justify-center object-contain gap-1 flex-col"
+              className="flex mx-auto items-center overflow-hidden  select-none border cursor-pointer rounded-xl border-[#f5c13d] justify-center object-contain gap-1 flex-col"
             >
-              <Box className="h-60 w-[17em]">
+              <Box className="h-60  w-[17em]">
                 <Image
                   src={item.link}
                   alt="flashcards"
                   width={300}
                   className="w-full h-full"
                   height={400}
+                  priority
                 />
               </Box>
 

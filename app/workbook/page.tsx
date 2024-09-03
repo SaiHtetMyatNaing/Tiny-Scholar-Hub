@@ -1,10 +1,12 @@
-import React from 'react'
-import MyanmarAlphabetWorkbook from '../Components/WorkBook/myanmar-alphabet-book'
+import React from "react";
+import MyanmarAlphabetWorkbook from "../Components/WorkBook/myanmar-alphabet-book";
 
 const page = () => {
   return (
-    <MyanmarAlphabetWorkbook/>
-  )
-}
+    <main>
+      <MyanmarAlphabetWorkbook />
+    </main>
+  );
+};
 
-export default page
+export default page;
