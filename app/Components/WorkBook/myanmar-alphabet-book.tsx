@@ -15,7 +15,7 @@ const MyanmarAlphabetWorkbook = () => {
     initial={{ opacity : 0 , y : 60 }}
     animate={{ opacity : 1 , y : 0}}
     transition={{duration : 0.8}}
-    className="relative w-full max-h-dvh ">
+    className="relative w-full  ">
       <Swiper
         cssMode={true}
         navigation={true}

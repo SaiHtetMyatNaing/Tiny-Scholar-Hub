@@ -14,9 +14,8 @@
   height: 100%;
 }
 
-.mySwiper { 
-  --swiper-navigation-color: black; 
-}
+
+
 
 .table {
   width: 100%;
@@ -82,19 +81,5 @@
 }
 
 
-.swiper {
-  width: 55em;
-  height: 35em;
-}
-
-.swiper-slide {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 18px;
-  font-size: 22px;
-  font-weight: bold;
-  color: #fff;
-}
 
 
