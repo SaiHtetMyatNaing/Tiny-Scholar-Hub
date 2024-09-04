@@ -1,10 +1,15 @@
 'use client'
 import AstronauntIcon from "@/public/icons/astronaunt";
+import { motion} from "framer-motion";
 import React from "react";
 
 const BottomWavyBg = () => {
   return (
-    <div className="w-full max-w-full relative">
+    <motion.div
+     initial={{ opacity : 0 , y : 30}}
+     animate={{ opacity : 1 , y :0}}
+     transition={{ duration : 1}}
+    className="w-full max-w-full relative">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
         <path
           fill="#f3f0e8"
@@ -15,7 +20,7 @@ const BottomWavyBg = () => {
       <div className="animated-div md:block hidden absolute bottom-16 right-24 transform scale-x-[-1] rotate-[0deg]">
         <AstronauntIcon />
       </div>
-    </div>
+    </motion.div>
   );
 };
 

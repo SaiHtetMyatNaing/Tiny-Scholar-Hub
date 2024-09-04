@@ -22,7 +22,7 @@ const WBPageTwo = () => {
   
 
   return (
-    <Box className="border-gray-400  flex flex-col gap-4 justify-center mx-auto max-w-3xl border-[2px] mt-7 p-1 px-3">
+    <Box className="border-[#ffd700] rounded-md  flex flex-col gap-4 justify-center mx-auto max-w-3xl border-[2px] mt-7 p-1 px-3">
       <WorksheetHeader />
         {item && item.length && item.length > 0 && item.map((i)=> {
           return (

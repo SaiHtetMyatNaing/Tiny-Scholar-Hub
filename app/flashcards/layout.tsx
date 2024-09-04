@@ -14,7 +14,6 @@ export default function FlashCardsLayout({
 }>) {
   return (
       <>
-        <TopNavBar />
         <section className="mt-20 px-2 mx-auto max-w-full w-full">
             {children}
         </section>

@@ -1,10 +1,14 @@
+'use client'
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
-import { Box } from "@mui/material";
+import { Box, Skeleton } from "@mui/material";
+import { useEffect, useState } from "react";
+import { boolean } from "zod";
 
 const ClerkAuth = () => {
+
   return (
-    <>
-      <SignedOut>
+     <>
+     <SignedOut>
         <Box
           className="w-20 flex items-center justify-center h-10 rounded-md border-[#f3f0e8] border-2"
           sx={{
@@ -35,8 +39,7 @@ const ClerkAuth = () => {
           }}
         />
       </SignedIn>
-    </>
-  );
+      </>)
 };
 
 export default ClerkAuth;

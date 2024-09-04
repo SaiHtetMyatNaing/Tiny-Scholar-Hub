@@ -13,7 +13,6 @@ export default function WorkBookLayout({
 }>) {
   return (
       <main>
-        <TopNavBar />
         <section className="mt-16 px-2">
             {children}
         </section>

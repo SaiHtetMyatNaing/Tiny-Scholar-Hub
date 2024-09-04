@@ -25,8 +25,9 @@ export default function Cards() {
     <Box className="flex max-w-6xl gap-4 sm:mt-14 md:mt-0 flex-wrap items-center  mx-auto p-2">
       <Typography
         component={motion.header}
-        initial={{ opacity: 1 }}
-        animate={fadePosition! > 50 ? { opacity: 0 } : { opacity: 1 }}
+        initial={{ opacity: 0 }}
+        animate={fadePosition! > 50 ? { opacity: 0 } : { opacity: 1  }}
+        transition={{duration : 1}}
         className="w-full text-center text-xl sm:text-2xl md:text-3xl text-black/25">
         {"Explore Our Learning Resources"}
       </Typography>
@@ -40,7 +41,7 @@ export default function Cards() {
               key={i}
               initial={{ opacity: 0, scale: 0.4 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4 }}
+              transition={{ duration: 1}}
               whileHover={{ scale : 0.94  }}
               className="flex mx-auto items-center overflow-hidden  select-none border cursor-pointer rounded-xl border-[#f5c13d] justify-center object-contain gap-1 flex-col"
             >

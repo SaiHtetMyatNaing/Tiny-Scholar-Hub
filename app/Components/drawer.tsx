@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
@@ -15,16 +15,17 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useSideBarStore } from "../store/useSideBarStore";
 import AlertDialog from "./canvas";
+import MainIcon from "@/public/icons/Logo";
 
 export default function LeftDrawer() {
   const [open, setOpen] = React.useState(false);
-  const toggleWhiteBoard = useSideBarStore((state)=> state.toggleWhiteBoard)
+  const toggleWhiteBoard = useSideBarStore((state) => state.toggleWhiteBoard);
   const router = useRouter();
   const items = [
     {
       id: 1,
       title: "Whiteboard",
-      handleClick : toggleWhiteBoard,
+      handleClick: toggleWhiteBoard,
       icon: <DrawRounded />,
     },
   ];
@@ -53,48 +54,49 @@ export default function LeftDrawer() {
 
   const DrawerList = (
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
-      <Box>     <List>
-        {pages.map((page, index) => (
-          <ListItem key={index} disablePadding>
-            <ListItemButton
-              onClick={() => {
-                router.push(page.path);
-              }}
+      <Box>
+        {" "}
+        <List>
+          {pages.map((page, index) => (
+            <ListItem key={index} disablePadding>
+              <ListItemButton
+                onClick={() => {
+                  router.push(page.path);
+                }}
+              >
+                <ListItemIcon>
+                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                </ListItemIcon>
+                <ListItemText primary={page.title} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+        <Divider />
+        <List>
+          {items.map((item) => (
+            <ListItem
+              key={item.id}
+              className="flex items-center"
+              disablePadding
             >
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={page.title} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {items.map((item) => (
-          <ListItem key={item.id} className="flex items-center" disablePadding>
-            <ListItemButton onClick={item.handleClick}>
-              <ListItemIcon>{item.icon}</ListItemIcon>
-              <ListItemText primary={item.title}  />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
+              <ListItemButton onClick={item.handleClick}>
+                <ListItemIcon>{item.icon}</ListItemIcon>
+                <ListItemText primary={item.title} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
       </Box>
-      
     </Box>
   );
 
   return (
-    <div className="flex">
-      <Image 
-        width={200}
-        height={200}
-        src="/Logo.png"
-        className="w-10"
-        alt="Logo"
-        onClick={toggleDrawer(true)}
-      />
+    <div className="flex cursor-pointer">
+
+      <Box className='mb-3 w-6 h-6 overflow-hidden' onClick={toggleDrawer(true)}>
+          <MainIcon fill="black"/>
+      </Box>  
       <Drawer className="mt-10" open={open} onClose={toggleDrawer(false)}>
         {DrawerList}
       </Drawer>
