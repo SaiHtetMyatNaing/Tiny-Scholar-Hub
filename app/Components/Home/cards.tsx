@@ -28,7 +28,18 @@ export default function Cards() {
         initial={{ opacity: 0 }}
         animate={fadePosition! > 50 ? { opacity: 0 } : { opacity: 1  }}
         transition={{duration : 1}}
-        className="w-full text-center text-xl sm:text-2xl md:text-3xl text-black/25">
+        sx={{
+          width: '100%', // w-full
+          textAlign: 'center', // text-center
+          fontSize: '1.5rem', // text-xl
+          '@media (min-width: 640px)': { // sm:text-2xl
+            fontSize: '1.75rem'
+          },
+          '@media (min-width: 768px)': { // md:text-3xl
+            fontSize: '2rem'
+          }
+        }}
+        className=" text-black/25">
         {"Explore Our Learning Resources"}
       </Typography>
 
