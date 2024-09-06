@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useMemo } from "react";
 
-const StoryCardComponent = () => {
+const StoryCards = () => {
   const alphabet: string[] = useMemo(() => myanmarAlphabet, []);
 
   return (
@@ -53,4 +53,4 @@ const StoryCardComponent = () => {
   );
 };
 
-export default StoryCardComponent;
+export default StoryCards;

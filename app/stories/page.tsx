@@ -1,10 +1,13 @@
+import { Container } from '@mui/material'
 import React from 'react'
-import StoryCardComponent from '../Components/StorySection/story-card-section'
+import StoryCards from '../Components/Story/story-cards'
 
-const Page = () => {
+const page = () => {
   return (
-    <StoryCardComponent/>
+    <Container className='mt-[6em]'>
+        <StoryCards/>
+    </Container>
   )
 }
 
-export default Page
+export default page

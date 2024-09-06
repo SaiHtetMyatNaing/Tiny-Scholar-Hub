@@ -46,6 +46,12 @@ export default function LeftDrawer() {
       path: "/admin-dashboard",
       icon: <DrawRounded />,
     },
+    {
+      id: 5,
+      title: "Story Quest",
+      path: "/stories",
+      icon: <DrawRounded />,
+    },
   ];
 
   const toggleDrawer = (newOpen: boolean) => () => {

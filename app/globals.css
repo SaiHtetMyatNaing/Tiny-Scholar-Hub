@@ -14,9 +14,6 @@
   height: 100%;
 }
 
-
-
-
 .table {
   width: 100%;
   table-layout: fixed; /* Ensures that column sizes are respected */

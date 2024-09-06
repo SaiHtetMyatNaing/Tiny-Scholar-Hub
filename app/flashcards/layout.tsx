@@ -13,10 +13,8 @@ export default function FlashCardsLayout({
   children: React.ReactNode;
 }>) {
   return (
-      <>
         <section className="mt-20 px-2 mx-auto max-w-full w-full">
             {children}
         </section>
-      </>
   );
 }

@@ -36,7 +36,7 @@ export default function TopNavBar() {
             </Link>
           </Box>
 
-          <Box className="flex items-center justify-between max-w-3xl gap-4 md:gap-6">
+          <Box className="flex items-center justify-between max-w-3xl gap-3 ml-1 md:gap-6">
             {pages.map((page, index) => {
               return (
                 <Link
