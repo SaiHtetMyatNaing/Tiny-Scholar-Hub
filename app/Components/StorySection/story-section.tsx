@@ -25,34 +25,34 @@ export default function StorySection() {
     initial={{ scale : 0 , opacity : 0 }} 
     animate={{ scale : 1 , opacity : 1}}
     transition={{duration : 0.5}}
-    className="max-w-4xl mx-auto w-[14em] shadow-none h-[20em] sm:w-[20em] sm:h-[25em] md:w-[40em] md:h-[25em] lg:w-[50em] lg:h-[30em]"
+    className="max-w-sm sm:max-w-4xl  mx-auto w-[17em] shadow-none h-[27em] sm:w-[35em] sm:h-[20em] md:w-[40em] md:h-[25em] lg:w-[50em] lg:h-[30em]"
     >
     <Swiper
       mousewheel={true}
       effect={"cards"}
       keyboard={true}
       modules={[EffectCards, Mousewheel,Keyboard ]}
-      className="w-full h-[70em] max-w-4xl"
+      className="w-full h-[70em]"
     >
       {data.map((item, i) => {
         return (
           <SwiperSlide
-            className="bg-white border p-5 rounded-md select-none border-[#ffd700] "
+            className="bg-white  border p-5 rounded-md select-none border-[#ffd700] "
             key={i}
           >
-            <Box className="w-full relative h-full flex items-center">
-                <Box className='absolute w-6 h-6 text-center top-0 rounded-md text-black-300/25  bg-gray-300/25  '>
+            <Box className="w-full relative h-full flex flex-col sm:flex-row items-center">
+                <Box className='absolute w-6 h-6 text-center left-0 top-0 rounded-md text-black-300/25  bg-gray-300/25  '>
                     {i + 1}
                 </Box>
               <Image
                 src={item.image}
-                className="w-[40em] h-[25em]"
+                className="w-[12em] md:w-[20em] lg:w-[40em] lg:h-[25em]"
                 alt={item.sentences[i]}
                 height={300}
                 width={200}
               />
 
-              <Box className="max-w-xl text-xl text-clip">
+              <Box className="max-w-xl text-sm sm:text-md md:text-lg lg:text-xl text-clip">
                 <span className="pl-4">{item.sentences[0]}</span>
                 {item.sentences.slice(1).join(" ")}
                 <Box
@@ -65,7 +65,7 @@ export default function StorySection() {
                 </Box>
                 <Link
                   href="www.tinyscholar.com"
-                  className="text-[10px]  md:text-sm absolute bottom-0 md:right-0 hover:text-black text-black/25 md:-bottom-3"
+                  className="text-[10px] -bottom-3 right-0  md:text-sm absolute sm:right-1 sm:-bottom-4 md:right-0 hover:text-black text-black/25 md:-bottom-3"
                 >
                   <em>www.tinyscholarhub.com</em>
                 </Link>
