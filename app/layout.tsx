@@ -24,9 +24,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-      <link rel="icon" href="/images/favicon-light.svg" sizes="16x16" media="(prefers-color-scheme: light)" />
-      <link rel="icon" href="/images/favicon-dark.svg" sizes="16x16" media="(prefers-color-scheme: dark)" />
-  
+        <link
+          rel="icon"
+          href="/images/favicon-light.svg"
+          sizes="16x16"
+          media="(prefers-color-scheme: light)"
+        />
+        <link
+          rel="icon"
+          href="/images/favicon-dark.svg"
+          sizes="16x16"
+          media="(prefers-color-scheme: dark)"
+        />
       </head>
 
       <body className={inter.className}>

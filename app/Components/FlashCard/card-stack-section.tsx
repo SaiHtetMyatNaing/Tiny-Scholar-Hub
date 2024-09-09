@@ -1,5 +1,5 @@
-'use client'
-import React, {useState } from "react";
+"use client";
+import React, { useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -9,11 +9,7 @@ import "swiper/css/effect-cards";
 import "swiper/css/navigation";
 
 // import required modules
-import {
-  EffectCards,
-  Keyboard,
-  Mousewheel,
-} from "swiper/modules";
+import { EffectCards, Keyboard, Mousewheel } from "swiper/modules";
 import { WordItem } from "@/app/lib/type";
 import Image from "next/image";
 import { Box, Typography } from "@mui/material";
@@ -36,10 +32,10 @@ export default function StackSection() {
   ]);
   return (
     <motion.div
-    initial={{ scale : 0 , opacity : 0 }} 
-    animate={{ scale : 1 , opacity : 1}}
-    transition={{duration : 0.5}}
-    className="max-w-4xl mx-auto w-[14em] shadow-none h-[20em] sm:w-[20em] sm:h-[25em] md:w-[40em] md:h-[25em] lg:w-[50em] lg:h-[30em]"
+      initial={{ scale: 0, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="max-w-4xl mx-auto w-[14em] shadow-none h-[20em] sm:w-[20em] sm:h-[25em] md:w-[40em] md:h-[25em] lg:w-[50em] lg:h-[30em]"
     >
       <Swiper
         effect={"cards"}
@@ -50,13 +46,13 @@ export default function StackSection() {
         centeredSlides={true}
         className="flashcards-swiper w-full "
       >
-        {words.map((word , i) => {
+        {words.map((word, i) => {
           return (
             <SwiperSlide
               key={word.id}
               className="bg-white border  border-[#ffd700] rounded-lg max-w-full w-full"
             >
-              <Box className='items-center relative justify-center gap-4 sm:gap-7 mb-3 md:gap-0 md:justify-between px-6 w-full max-w-full h-full flex md:flex-row flex-col'>
+              <Box className="items-center relative justify-center gap-4 sm:gap-7 mb-3 md:gap-0 md:justify-between px-6 w-full max-w-full h-full flex md:flex-row flex-col">
                 <Image
                   src={word.image}
                   alt={word.item}
@@ -64,10 +60,18 @@ export default function StackSection() {
                   height={250}
                   className="object-contain md:w-[15em] lg:w-auto h-auto w-auto"
                 />
-                <Typography variant="h2" className="w-full  text-center text-3xl md:text-[3em] lg:text-[5em] leading-snug text-[#ffd700]">
-                  {word.item} 
+                <Typography
+                  variant="h2"
+                  className="w-full  text-center select-none cursor-pointer text-3xl md:text-[3em] lg:text-[5em] leading-snug text-[#ffd700]"
+                >
+                  {word.item}
                 </Typography>
-                <Link href='www.tinyscholar.com' className="text-[10px]  md:text-sm absolute bottom-0 md:right-6 text-black/25 md:bottom-2"><em>www.tinyscholarhub.com</em></Link>
+                <Link
+                  href="www.tinyscholar.com"
+                  className="text-[10px]  md:text-sm absolute bottom-0 md:right-6 text-black/25 md:bottom-2"
+                >
+                  <em>www.tinyscholarhub.com</em>
+                </Link>
               </Box>
             </SwiperSlide>
           );

@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 const isProtectedRoute = createRouteMatcher([
   '/workbook',
-  '/admin-dashboard'
+  '/admin-dashboard',
 ]);
 
 export default clerkMiddleware(async (auth, req) => {
@@ -17,10 +17,6 @@ export default clerkMiddleware(async (auth, req) => {
     }
   }
 });
-
-
-
-
 
 export const config = {
   matcher: [
