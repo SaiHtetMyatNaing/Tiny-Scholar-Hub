@@ -63,37 +63,37 @@ const LessonPlanSection = () => {
 
                 <LessonPlanObjectiveBox
                   title={lesson.learning_objectives_mm}
-                  description={lesson.learning_objectives}
+                  description={lesson.learning_objectives.map((item) => item.objective)}
                 />
 
                 <LessonPlanObjectiveBox
                   title={lesson.instructional_materials_mm}
-                  description={lesson.instructional_materials}
+                  description={lesson.instructional_materials.map((item)=> item.material)}
                 />
 
                 <LessonPlanObjectiveBox
                   title={lesson.differentiation_mm}
-                  description={lesson.differentiation}
+                  description={lesson.differentiation.map((item)=> item.strategy)}
                 />
 
                 <LessonPlanObjectiveBox
                   title={lesson.assessment_mm}
-                  description={lesson.assessment}
+                  description={lesson.assessment.map((item)=> item.method)}
                 />
 
                 <LessonPlanObjectiveBox
                   title={lesson.technology_integration_mm}
-                  description={lesson.technology_integration}
+                  description={lesson.technology_integration.map((item)=> item.tool)}
                 />
 
                 <LessonPlanObjectiveBox
                   title={lesson.time_management_mm}
-                  description={lesson.time_management}
+                  description={lesson.time_management.map((item)=> item.tip)}
                 />
 
                 <LessonPlanObjectiveBox
                   title={lesson.reflection_mm}
-                  description={lesson.reflection}
+                  description={lesson.reflection.map((item)=> item.point)}
                 />
               </Box>
             );
@@ -119,7 +119,7 @@ const LessonPlanSection = () => {
                         </Typography>
                         <List>
                           {procedure.description.map((obj, i) => {
-                            return <ListItem key={i}>{obj}</ListItem>;
+                            return <ListItem key={i}>{obj.activity}</ListItem>;
                           })}
                         </List>
                       </Box>

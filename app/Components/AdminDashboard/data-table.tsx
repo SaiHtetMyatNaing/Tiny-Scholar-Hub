@@ -47,7 +47,6 @@ export function DataTable<TData, TValue>({
       size : 100 , minSize : 50 , maxSize : 500
      }
   });
-  console.log(filtering);
   
   return (
     <TableContainer component={Paper} className="p-2">

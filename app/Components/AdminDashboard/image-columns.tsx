@@ -42,7 +42,7 @@ export const ImageColumns: ColumnDef<MockDataProps>[] = [
     cell: ({ row }) => {
       return (
         <Box className="flex gap-2">
-          <EditDialogSlide>
+          <EditDialogSlide title="Edit">
             <ImageEditForm formData={row.original}/>
           </EditDialogSlide>
           <DeleteDialog id={row.original.id} />

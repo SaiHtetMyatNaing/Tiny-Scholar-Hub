@@ -8,9 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { StorySegment } from "@/app/lib/story-data";
 import { register } from "module";
 
-type Name = {
-  name: { sentence: string };
-};
+
 // Define your StorySegment schema using Zod
 const storySegmentSchema = z.object({
   id: z.number().positive(),

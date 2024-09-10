@@ -23,7 +23,7 @@ export const StorySegmentColumns: ColumnDef<StorySegment>[] = [
     cell: ({ row }) => {
       const sentences = row.original.sentences;
       return (
-        <Box>
+        <Box  className='max-h-[10em] overflow-hidden cursor-pointer select-none'>
           {sentences.map((item, index) => (
             <p key={index}>{item.sentence}</p>
           ))}
@@ -44,7 +44,7 @@ export const StorySegmentColumns: ColumnDef<StorySegment>[] = [
     cell: ({ row }) => {
       return (
         <Box className="flex gap-2">
-          <EditDialogSlide>
+          <EditDialogSlide title="Edit">
             <StoryEditForm formData={row.original} />
           </EditDialogSlide>
           <DeleteDialog id={row.original.id} />

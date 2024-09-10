@@ -10,6 +10,8 @@ import { StorySegmentColumns } from "./story-column";
 import { story } from "@/app/lib/story-data";
 import { data } from "@/app/lib/mock-data";
 import { ImageColumns } from "./image-columns";
+import { lessonPlan } from "@/app/lib/lesson-plan";
+import { LessonPlanSegmentColumns } from "./lesson-plan-column";
 
 export default function AdminPanel() {
   const [value, setValue] = React.useState("1");
@@ -22,7 +24,7 @@ export default function AdminPanel() {
     <Box sx={{ width: "100%", typography: "body1" }} >
       <TabContext value={value}>
         <Box sx={{ borderColor: "black" }} className='max-w-sm mx-auto'>
-          <TabList onChange={handleChange} aria-label="lab API tabs example">
+          <TabList onChange={handleChange}>
             <Tab label="Images" value="1" />
             <Tab label="Story" value="2" />
             <Tab label="Lesson Plan" value="3" />
@@ -35,7 +37,7 @@ export default function AdminPanel() {
           <DataTable columns={StorySegmentColumns} data={story}/>
         </TabPanel>
         <TabPanel value="3">
-            Hello
+            <DataTable  columns={LessonPlanSegmentColumns} data={lessonPlan}/>
         </TabPanel>
       </TabContext>
     </Box>
