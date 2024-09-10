@@ -10,8 +10,12 @@ import StoryEditForm from "../Form/story-edit-form";
 
 export const StorySegmentColumns: ColumnDef<StorySegment>[] = [
   {
-    header: "ID",
+    header: "Id",
     accessorKey: "id",
+  },
+  {
+    header: "Title",
+    accessorKey: "title",
   },
   {
     header: "Sentences",
@@ -20,8 +24,8 @@ export const StorySegmentColumns: ColumnDef<StorySegment>[] = [
       const sentences = row.original.sentences;
       return (
         <Box>
-          {sentences.map((sentence: string, index: number) => (
-            <p key={index}>{sentence}</p>
+          {sentences.map((item, index) => (
+            <p key={index}>{item.sentence}</p>
           ))}
         </Box>
       );
@@ -31,7 +35,7 @@ export const StorySegmentColumns: ColumnDef<StorySegment>[] = [
     header: "Image URL",
     accessorKey: "image",
     cell: ({ row }) => {
-      return <Box>Hello</Box>;
+      return <Box>{row.original.image}</Box>;
     },
   },
   {
@@ -40,9 +44,9 @@ export const StorySegmentColumns: ColumnDef<StorySegment>[] = [
     cell: ({ row }) => {
       return (
         <Box className="flex gap-2">
-        <EditDialogSlide>
+          <EditDialogSlide>
             <StoryEditForm formData={row.original} />
-        </EditDialogSlide>
+          </EditDialogSlide>
           <DeleteDialog id={row.original.id} />
         </Box>
       );

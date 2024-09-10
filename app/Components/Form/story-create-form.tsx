@@ -1,87 +1,97 @@
-import React, { useState } from 'react';
-import { Button, TextField, Stack, IconButton } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { StorySegment } from '@/app/lib/story-data';
+import React from "react";
+import { Button, TextField, Stack, IconButton } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { useForm, useFieldArray, Controller } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+const storySegmentSchema = z.object({
+  id: z.number().positive(),
+  sentences: z.array(
+    z.object({
+      sentence : z.string().min(1)
+    })),
+  image: z.string().url().optional(),
+});
 
+type StorySegment = z.infer<typeof storySegmentSchema>;
 
 const StorySegmentForm = () => {
-  const [segment, setSegment] = useState<StorySegment>({
-    id: 0,
-    sentences: [''],
-    image: '',
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<StorySegment>({
+    resolver : zodResolver(storySegmentSchema),
+    defaultValues: {
+      id: 0,
+      sentences: [{ sentence: '' }],
+      image: "",
+    },
+  });
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "sentences",
   });
 
-  const handleIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSegment({ ...segment, id: parseInt(e.target.value) || 0 });
-  };
-
-  const handleSentenceChange = (index: number, value: string) => {
-    const newSentences = [...segment.sentences];
-    newSentences[index] = value;
-    setSegment({ ...segment, sentences: newSentences });
-  };
-
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSegment({ ...segment, image: e.target.value });
-  };
-
-  const addSentence = () => {
-    setSegment({ ...segment, sentences: [...segment.sentences, ''] });
-  };
-
-  const removeSentence = (index: number) => {
-    const newSentences = segment.sentences.filter((_, i) => i !== index);
-    setSegment({ ...segment, sentences: newSentences });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Submitted segment:', segment);
-  };
+  const onSubmit = (data: StorySegment) =>
+    console.log("Submitted segment:", data);
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={3} width={450}>
+        {/* ID field */}
+
         <TextField
+          {...register("id")}
           label="ID"
           type="number"
-          value={segment.id}
-          onChange={handleIdChange}
           fullWidth
+          error={!!errors.id}
+          helperText={errors?.id?.message}
         />
-        
-        {segment.sentences.map((sentence, index) => (
-          <Stack key={index} direction="row" spacing={1}>
+
+        {/* Sentences fields */}
+        {fields.map((field, index) => (
+          <Stack key={field.id} direction="row" spacing={1}>
             <TextField
+              {...register(`sentences.${index}`)}
               label={`Sentence ${index + 1}`}
-              value={sentence}
-              onChange={(e) => handleSentenceChange(index, e.target.value)}
               fullWidth
               multiline
               rows={2}
+              error={!!errors.sentences?.[index]}
+              helperText={errors.sentences?.[index]?.message}
             />
-            <IconButton onClick={() => removeSentence(index)} color="error">
+
+            <IconButton onClick={() => remove(index)} color="error">
               <DeleteIcon />
             </IconButton>
           </Stack>
         ))}
-        
+
+        {/* Add Sentence button */}
         <Button
           startIcon={<AddIcon />}
-          onClick={addSentence}
           variant="outlined"
+          onClick={()=>append({sentence : ' '})}
+          disabled={fields.length >= 4}
         >
           Add Sentence
         </Button>
-        
+
+        {/* Image URL field */}
+
         <TextField
+          {...register("image")}
           label="Image URL"
-          value={segment.image}
-          onChange={handleImageChange}
           fullWidth
+          error={!!errors.image}
+          helperText={errors?.image?.message}
         />
-        
+
+        {/* Submit button */}
         <Button
           variant="contained"
           type="submit"

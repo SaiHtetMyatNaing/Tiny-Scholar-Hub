@@ -19,9 +19,9 @@ export default function AdminPanel() {
   };
 
   return (
-    <Box sx={{ width: "100%", typography: "body1" }}>
+    <Box sx={{ width: "100%", typography: "body1" }} >
       <TabContext value={value}>
-        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+        <Box sx={{ borderColor: "black" }} className='max-w-sm mx-auto'>
           <TabList onChange={handleChange} aria-label="lab API tabs example">
             <Tab label="Images" value="1" />
             <Tab label="Story" value="2" />

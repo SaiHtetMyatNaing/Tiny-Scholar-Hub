@@ -1,87 +1,121 @@
-import React, { useState } from 'react';
-import { Button, TextField, Stack, IconButton } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { StorySegment } from '@/app/lib/story-data';
+import React from "react";
+import { Button, TextField, Stack, IconButton } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { useForm, Controller, useFieldArray } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { StorySegment } from "@/app/lib/story-data";
+import { register } from "module";
 
+type Name = {
+  name: { sentence: string };
+};
+// Define your StorySegment schema using Zod
+const storySegmentSchema = z.object({
+  id: z.number().positive(),
+  sentences: z.array(
+    z.object({
+      sentence: z.string().min(1),
+    })
+  ),
+  image: z.string().url(),
+});
 
-const StoryEditForm = ({formData} : {formData : StorySegment}) => {
-  const [segment, setSegment] = useState<StorySegment>({
-    id: formData.id,
-    sentences: formData.sentences,
-    image: formData.image,
+type StoryProps = z.infer<typeof storySegmentSchema>;
+
+const StoryEditForm = ({ formData }: { formData: StoryProps }) => {
+  // Use useForm with Zod resolver
+  const {
+    control,
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm<StoryProps>({
+    resolver: zodResolver(storySegmentSchema),
+    defaultValues: {
+      ...formData,
+      sentences:
+        formData.sentences.length < 4
+          ? [
+              ...formData.sentences,
+              ...Array(4 - formData.sentences.length).fill(""),
+            ]
+          : formData.sentences,
+    },
   });
 
-  const handleIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSegment({ ...segment, id: parseInt(e.target.value) || 0 });
-  };
+  // Use useFieldArray to manage the sentences array
+  const { fields, remove, append } = useFieldArray({
+    control,
+    name: "sentences",
+  });
 
-  const handleSentenceChange = (index: number, value: string) => {
-    const newSentences = [...segment.sentences];
-    newSentences[index] = value;
-    setSegment({ ...segment, sentences: newSentences });
-  };
-
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSegment({ ...segment, image: e.target.value });
-  };
-
-  const addSentence = () => {
-    setSegment({ ...segment, sentences: [...segment.sentences, ''] });
-  };
-
-  const removeSentence = (index: number) => {
-    const newSentences = segment.sentences.filter((_, i) => i !== index);
-    setSegment({ ...segment, sentences: newSentences });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Submitted segment:', segment);
+  const onSubmit = (data: StoryProps) => {
+    console.log("Submitted segment:", data);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={3} width={450}>
-        <TextField
-          label="ID"
-          type="number"
-          value={segment.id}
-          onChange={handleIdChange}
-          fullWidth
-        />
-        
-        {segment.sentences.map((sentence, index) => (
-          <Stack key={index} direction="row" spacing={1}>
+        <Controller
+          name="id"
+          control={control}
+          render={({ field }) => (
             <TextField
-              label={`Sentence ${index + 1}`}
-              value={sentence}
-              onChange={(e) => handleSentenceChange(index, e.target.value)}
+              {...field} // Spread the field props onto the TextField
+              label="ID"
+              type="number"
               fullWidth
-              multiline
-              rows={2}
+              error={!!errors.id}
+              helperText={errors.id?.message}
             />
-            <IconButton onClick={() => removeSentence(index)} color="error">
+          )}
+        />
+
+        {fields.map((field, index) => (
+          <Stack key={field.id} direction="row" spacing={1}>
+            <Controller
+              name={`sentences.${index}.sentence`}
+              control={control}
+              render={({ field }) => (
+                <TextField
+                  {...field}
+                  label={`Sentence ${index + 1}`}
+                  fullWidth
+                  multiline
+                  rows={2}
+                  error={!!errors.sentences?.[index]?.sentence}
+                  helperText={errors.sentences?.[index]?.sentence?.message}
+                  // Make sure to set the value to field.value
+                  value={field.value}
+                />
+              )}
+            />
+
+            <IconButton onClick={() => remove(index)} color="error">
               <DeleteIcon />
             </IconButton>
           </Stack>
         ))}
-        
+
         <Button
           startIcon={<AddIcon />}
-          onClick={addSentence}
           variant="outlined"
+          onClick={() => append({ sentence: "" })}
+          disabled={fields.length >= 4}
         >
           Add Sentence
         </Button>
-        
+
         <TextField
+          {...register("image")}
           label="Image URL"
-          value={segment.image}
-          onChange={handleImageChange}
           fullWidth
+          error={!!errors.image}
+          helperText={errors.image?.message}
         />
-        
+
         <Button
           variant="contained"
           type="submit"

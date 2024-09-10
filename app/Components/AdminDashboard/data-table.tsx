@@ -38,7 +38,6 @@ export function DataTable<TData, TValue>({
     columns,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
-
     onGlobalFilterChange: setFiltering,
     state: {
       globalFilter: debounceFiltering, //To reduce unnecessary rendering
@@ -48,7 +47,8 @@ export function DataTable<TData, TValue>({
       size : 100 , minSize : 50 , maxSize : 500
      }
   });
-
+  console.log(filtering);
+  
   return (
     <TableContainer component={Paper} className="p-2">
       <Box className="flex items-center justify-between mx-auto">
