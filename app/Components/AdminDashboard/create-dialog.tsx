@@ -6,7 +6,7 @@ import DialogContent from "@mui/material/DialogContent";
 import Slide from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
 import { DialogTitle } from "@mui/material";
-import CreateForm from "../Form/create-form";
+import CreateForm from "../Form/image-create-form";
 import { DangerousOutlined } from "@mui/icons-material";
 
 const Transition = React.forwardRef(function Transition(
@@ -18,7 +18,7 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function CreateDialogSlide() {
+export default function CreateDialogSlide({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -62,7 +62,7 @@ export default function CreateDialogSlide() {
               className="-mr-5 cursor-pointer hover:text-gray-500"
             />
           </DialogTitle>
-          <CreateForm />
+          {children}
         </DialogContent>
       </Dialog>
     </>

@@ -26,20 +26,23 @@ export default function Cards() {
       <Typography
         component={motion.header}
         initial={{ opacity: 0 }}
-        animate={fadePosition! > 50 ? { opacity: 0 } : { opacity: 1  }}
-        transition={{duration : 1}}
+        animate={fadePosition! > 50 ? { opacity: 0 } : { opacity: 1 }}
+        transition={{ duration: 1 }}
         sx={{
-          width: '100%', // w-full
-          textAlign: 'center', // text-center
-          fontSize: '1.5rem', // text-xl
-          '@media (min-width: 640px)': { // sm:text-2xl
-            fontSize: '1.75rem'
+          width: "100%", // w-full
+          textAlign: "center", // text-center
+          fontSize: "1.5rem", // text-xl
+          "@media (min-width: 640px)": {
+            // sm:text-2xl
+            fontSize: "1.75rem",
           },
-          '@media (min-width: 768px)': { // md:text-3xl
-            fontSize: '2rem'
-          }
+          "@media (min-width: 768px)": {
+            // md:text-3xl
+            fontSize: "2rem",
+          },
         }}
-        className=" text-black/25">
+        className=" text-black/25"
+      >
         {"Explore Our Learning Resources"}
       </Typography>
 
@@ -52,9 +55,22 @@ export default function Cards() {
               key={i}
               initial={{ opacity: 0, scale: 0.4 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1}}
-              whileHover={{ scale : 0.94  }}
-              className="flex mx-auto items-center overflow-hidden  select-none border cursor-pointer rounded-xl border-[#f5c13d] justify-center object-contain gap-1 flex-col"
+              transition={{ duration: 0.1 }}
+              whileHover={{ scale: 0.9 }}
+              sx={{
+                display: 'flex',
+                mx: 'auto',
+                alignItems: 'center',
+                overflow: 'hidden',
+                userSelect: 'none',
+                border: '1px solid #f5c13d',
+                cursor: 'pointer',
+                borderRadius: '12px',
+                justifyContent: 'center',
+                objectFit: 'contain',
+                gap: '4px',
+                flexDirection: 'column',
+              }}
             >
               <Box className="h-60  w-[17em]">
                 <Image

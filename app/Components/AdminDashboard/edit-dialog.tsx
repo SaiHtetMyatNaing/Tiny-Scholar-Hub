@@ -6,8 +6,8 @@ import DialogContent from "@mui/material/DialogContent";
 import Slide from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
 import { DialogTitle } from "@mui/material";
-import EditForm from "../Form/edit-form";
-import { EditFormProps } from "../Form/create-form";
+import EditForm from "../Form/image-edit-form";
+import { EditFormProps } from "../Form/image-create-form";
 import { DangerousOutlined } from "@mui/icons-material";
 
 const Transition = React.forwardRef(function Transition(
@@ -19,7 +19,7 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function EditDialogSlide({ formData }: EditFormProps) {
+export default function EditDialogSlide({children} : {children : React.ReactNode}) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -66,7 +66,7 @@ export default function EditDialogSlide({ formData }: EditFormProps) {
               className="-mr-5 cursor-pointer hover:text-gray-500"
             />
           </DialogTitle>
-          <EditForm formData={formData} />
+           {children}
         </DialogContent>
       </Dialog>
     </>

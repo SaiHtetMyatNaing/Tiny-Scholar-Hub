@@ -25,22 +25,29 @@ export default function TopNavBar() {
     },
   ];
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed"  sx={{ boxShadow: "none" }}>
+    <Box sx={{ flexGrow: 1  }} className='select-none'>
+      <AppBar position="fixed" sx={{ boxShadow: "none" }}>
         <Toolbar className="text-black bg-[#ffd700] backdrop-blur-lg flex justify-between items-center">
-          <Box className='flex items-center h-10 justify-between gap-3'>
+          <Box className="flex items-center h-10 justify-between gap-3">
             <LeftDrawer />
-            <Link href='/'><Typography noWrap className="text-[1em]  cursor-pointer">
-              Tiny Scholar Hub
-            </Typography>
+            <Link href="/">
+              <Typography noWrap className="text-[1em]  cursor-pointer">
+                Tiny Scholar Hub
+              </Typography>
             </Link>
           </Box>
 
-          <Box className="flex items-center justify-between max-w-3xl gap-3 ml-1 md:gap-6">
+          <Box className="flex text-black/55 font-bold items-center justify-between max-w-3xl gap-3 ml-1 md:gap-6">
             {pages.map((page, index) => {
               return (
                 <Link
-                  className={`link ${pathname === page.path ? "active" : ""} hidden sm:block  underline-on-hover`}
+                  className={`link ${
+                    pathname === page.path ||
+                    (pathname === '/' && page.path === '/') ||
+                    (page.path !== '/' && pathname.startsWith(page.path))
+                      ? "active"
+                      : ""
+                  } text-gray-900/ hidden sm:block  underline-on-hover`}
                   href={page.path}
                   key={index}
                 >

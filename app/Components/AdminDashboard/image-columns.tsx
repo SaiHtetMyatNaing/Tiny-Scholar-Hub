@@ -4,9 +4,10 @@ import { MockDataProps } from "@/app/types/mock-data";
 import EditDialogSlide from "./edit-dialog";
 import DeleteDialog from "./delete-dialog";
 import CreateDialogSlide from "./create-dialog";
+import ImageCreationForm from "../Form/image-create-form";
+import ImageEditForm from "../Form/image-edit-form";
 
-
-export const columns: ColumnDef<MockDataProps>[] = [
+export const ImageColumns: ColumnDef<MockDataProps>[] = [
   {
     header: "Id",
     accessorKey: "id",
@@ -37,20 +38,26 @@ export const columns: ColumnDef<MockDataProps>[] = [
   },
   {
     header: "Product Control",
-    accessorKey : 'options',
+    accessorKey: "options",
     cell: ({ row }) => {
       return (
         <Box className="flex gap-2">
-          <EditDialogSlide formData={row.original} />
+          <EditDialogSlide>
+            <ImageEditForm formData={row.original}/>
+          </EditDialogSlide>
           <DeleteDialog id={row.original.id} />
         </Box>
       );
     },
   },
   {
-    id : 'action',
-    header : ()=> <CreateDialogSlide/>,
-    accessorKey : 'action',
-    size : 30,
-  }
+    id: "action",
+    header: () => (
+      <CreateDialogSlide>
+        <ImageCreationForm />
+      </CreateDialogSlide>
+    ),
+    accessorKey: "action",
+    size: 30,
+  },
 ];

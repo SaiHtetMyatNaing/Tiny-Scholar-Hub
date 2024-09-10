@@ -1,9 +1,9 @@
 import React from 'react'
-import WorksheetTable from '../Components/AdminDashboard/worksheet-table'
+import AdminPanel from '../Components/AdminDashboard/admin-tab'
 
 const page = () => {
   return (
-    <WorksheetTable/>
+    <AdminPanel/>
   )
 }
 

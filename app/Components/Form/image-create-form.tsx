@@ -10,7 +10,7 @@ export interface EditFormProps {
   formData: FormData;
 }
 
-const CreateForm = () => {
+const ImageCreationForm = () => {
   const {
     register,
     reset,
@@ -105,4 +105,4 @@ const CreateForm = () => {
   );
 };
 
-export default CreateForm;
+export default ImageCreationForm;

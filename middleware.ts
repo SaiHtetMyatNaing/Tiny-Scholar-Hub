@@ -7,16 +7,16 @@ const isProtectedRoute = createRouteMatcher([
   '/admin-dashboard',
 ]);
 
-export default clerkMiddleware(async (auth, req) => {
-  if (isProtectedRoute(req)) {
-    try {
-      await auth().protect();
-    } catch (error) {
-      console.error('Authentication error:', error);
-      return NextResponse.redirect(new URL('/sign-in', req.url), { status: 302 });
+  export default clerkMiddleware(async (auth, req) => {
+    if (isProtectedRoute(req)) {
+      try {
+        await auth().protect();
+      } catch (error : unknown) {
+        handleAuthenticationError(error);
+        return NextResponse.redirect(new URL('/sign-in', req.url), { status: 302 });
+      }
     }
-  }
-});
+  });
 
 export const config = {
   matcher: [
@@ -27,3 +27,11 @@ export const config = {
   ],
 };
 
+
+function handleAuthenticationError(error: unknown) {
+  if (error instanceof Error) {
+    console.error('Authentication Error:', error.message);
+  } else {
+    console.error('An unknown error occurred:', error);
+  }
+}

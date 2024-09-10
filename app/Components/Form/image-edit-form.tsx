@@ -11,7 +11,7 @@ export interface EditFormProps {
   formData: FormData;
 }
 
-const EditForm = ({ formData }: EditFormProps) => {
+const ImageEditForm = ({ formData }: EditFormProps) => {
   const {
     register,
     reset,
@@ -106,4 +106,4 @@ const EditForm = ({ formData }: EditFormProps) => {
   );
 };
 
-export default EditForm;
+export default ImageEditForm;
