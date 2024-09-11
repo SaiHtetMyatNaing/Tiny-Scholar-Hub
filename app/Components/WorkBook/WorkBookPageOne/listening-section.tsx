@@ -35,7 +35,7 @@ const ListeningSection = () => {
           }`
       )
       .join("\n");
-  }, []);
+  }, [shuffleWords]);
 
   return (
     <Box className="flex flex-col gap-4 cursor-pointer">

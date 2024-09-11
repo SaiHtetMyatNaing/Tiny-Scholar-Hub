@@ -1,4 +1,4 @@
-import { MockDataProps } from "../types/mock";
+import { MockDataProps } from "../types/mock-data";
 
 export const data: MockDataProps[] = [
   {

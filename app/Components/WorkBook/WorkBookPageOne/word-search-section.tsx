@@ -20,7 +20,7 @@ const WordSearchTemplate = ({ word }: { word: string }) => {
       indices.add(newIndex);
     }
     return Array.from(indices);
-  }, []);
+  }, [numbers]);
 
   useEffect(() => {
     // Generate randomAlphabets after the initial render
@@ -30,7 +30,7 @@ const WordSearchTemplate = ({ word }: { word: string }) => {
         : myanmarAlphabet[Math.floor(Math.random() * myanmarAlphabet.length)]
     );
     setRandomAlphabets(alphabets);
-  }, [selectedIndices]);
+  }, [selectedIndices , word , numbers]);
 
   //handle hover
   const handleMouseOver = useCallback((index: number) => {
@@ -51,7 +51,7 @@ const WordSearchTemplate = ({ word }: { word: string }) => {
   //handle read instruction
   const handleReadInstruction = useCallback(() => {
     speakText(` ${word}ကိုရှာပြီးဝိုင်းပါ`, 0.8);
-  }, []);
+  }, [word]);
 
   return (
     <Box className="max-w-md w-max px-2 mt-4 flex flex-col gap-4 ">

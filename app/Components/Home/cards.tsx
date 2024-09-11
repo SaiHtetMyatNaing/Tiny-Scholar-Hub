@@ -18,7 +18,7 @@ export default function Cards() {
 
   const handleScrollChange = React.useCallback((latest: number) => {
     if (fadePosition! < 50) setFadePosition(latest);
-  }, []); // The callback will only be recreated if dependencies change
+  }, [fadePosition]); // The callback will only be recreated if dependencies change
   useMotionValueEvent(scrollY, "change", handleScrollChange);
 
   return (
