@@ -17,7 +17,7 @@ const MatchingSection = () => {
   useEffect(() => {
     const mixed = shuffle(array2);
     setArray2(mixed);
-  }, [array2]);
+  }, []);
 
   return (
     <Box className="z-[2000] flex flex-col gap-4 justify-between cursor-pointer">
