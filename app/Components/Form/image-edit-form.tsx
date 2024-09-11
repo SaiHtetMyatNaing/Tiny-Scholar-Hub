@@ -1,24 +1,29 @@
-import { useForm } from "react-hook-form";
-import { Button, Stack, TextField } from "@mui/material";
+import { useForm, Controller } from "react-hook-form";
+import { Button, Stack, TextField, Box } from "@mui/material";
 import { z } from "zod";
 import { EditFormSchema } from "@/app/schema/form-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 
+// Define the type for the form data based on the Zod schema
 type FormData = z.infer<typeof EditFormSchema>;
 
+// Interface for the props that the EditForm component expects
 export interface EditFormProps {
-  // handleClose: () => void;
-  formData: FormData;
+  // handleClose: () => void; // Commented out, might be used later
+  formData: FormData; // Initial form data to populate the fields
 }
 
 const ImageEditForm = ({ formData }: EditFormProps) => {
+  // Initialize the react-hook-form with Zod schema validation and default values
   const {
     register,
     reset,
+    control,
     handleSubmit,
-    formState: errors,
+    formState: { errors },
   } = useForm<FormData>({
     defaultValues: {
+      // Populate default values from the provided formData prop
       id: formData.id,
       created_at: formData.created_at,
       name_en: formData.name_en,
@@ -27,68 +32,141 @@ const ImageEditForm = ({ formData }: EditFormProps) => {
       updated_at: formData.updated_at,
       start_with: formData.start_with,
     },
-    resolver : zodResolver(EditFormSchema)
+    resolver: zodResolver(EditFormSchema), // Use Zod for schema validation
   });
 
+  // Function to handle form submission
   const onFormSubmit = (value: FormData) => {
-    console.log(value);
-    reset();
+    console.log(value); // Log the submitted form data
+    reset(); // Reset the form after submission
   };
 
   return (
-    <form onSubmit={handleSubmit(onFormSubmit)} className="flex flex-col gap-3">
-      <Stack spacing={3} width={450}>
-        <TextField
-          label="id"
-          type="number"
-          {...register("id")}
-          error={!!errors.errors.id}
-          helperText={errors.errors.id?.message}
-          aria-readonly={true}
+    // Main form container with styling
+    <Box
+      component="form"
+      onSubmit={handleSubmit(onFormSubmit)}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gap: 3,
+        width: "100%",
+        maxWidth: "100%",
+        padding: 2,
+      }}
+    >
+      {/* Stack to arrange form fields vertically */}
+      <Stack spacing={3} sx={{ width: { xs: "100%" } }}>
+        {/* Controller components to manage each form field with validation */}
+        <Controller
+          name="id"
+          control={control}
+          render={({ field }) => (
+            <TextField
+              label="id"
+              type="number"
+              {...field}
+              error={!!errors.id}
+              helperText={errors.id?.message}
+              fullWidth
+            />
+          )}
         />
-        <TextField
-          label="Created At"
-          type="text"
-          {...register("created_at")}
-          error={!!errors.errors.created_at}
-          helperText={errors.errors.created_at?.message}
+
+        <Controller
+          name="created_at"
+          control={control}
+          render={({ field }) => (
+            <TextField
+              label="Created At"
+              type="text"
+              {...field}
+              error={!!errors.created_at}
+              helperText={errors.created_at?.message}
+              fullWidth
+            />
+          )}
         />
-        <TextField
-          label="Name_en"
-          type="text"
-          {...register("name_en")}
-          error={!!errors.errors.name_en}
-          helperText={errors.errors.name_en?.message}
+
+        <Controller
+          name="name_en"
+          control={control}
+          render={({ field }) => (
+            <TextField
+              label="Name_en"
+              type="text"
+              {...field}
+              error={!!errors.name_en}
+              helperText={errors.name_en?.message}
+              fullWidth
+            />
+          )}
         />
-        <TextField
-          label="Name_mm"
-          type="text"
-          {...register("name_mm")}
-          error={!!errors.errors.name_mm}
-          helperText={errors.errors.name_mm?.message}
+
+        <Controller
+          name="name_mm"
+          control={control}
+          render={({ field }) => (
+            <TextField
+              label="Name_mm"
+              type="text"
+              {...field}
+              error={!!errors.name_mm}
+              helperText={errors.name_mm?.message}
+              fullWidth
+            />
+          )}
         />
-        <TextField
-          label="SVG URl"
-          type="text"
-          {...register("svg_content")}
-          error={!!errors.errors.svg_content}
-          helperText={errors.errors.svg_content?.message}
+
+        <Controller
+          name="svg_content"
+          control={control}
+          render={({ field }) => (
+            <TextField
+              label="SVG URl"
+              type="text"
+              {...field}
+              error={!!errors.svg_content}
+              helperText={errors.svg_content?.message}
+              fullWidth
+            />
+          )}
         />
-        <TextField
-          label="Updated At"
-          type="text"
-          {...register("updated_at")}
-          error={!!errors.errors.updated_at}
-          helperText={errors.errors.updated_at?.message}
+
+        <Controller
+          name="updated_at"
+          control={control}
+          render={({ field }) => (
+            <TextField
+              label="Updated At"
+              type="text"
+              {...field}
+              error={!!errors.updated_at}
+              helperText={errors.updated_at?.message}
+              fullWidth
+            />
+          )}
         />
-        <TextField
-          label="Starts With"
-          type="text"
-          {...register("start_with")}
-          error={!!errors.errors.start_with}
-          helperText={errors.errors.start_with?.message}
+
+        <Controller
+          name="start_with"
+          control={control}
+          render={({ field }) => (
+            <TextField
+              label="Starts With"
+              type="text"
+              {...field}
+              error={!!errors.start_with}
+              helperText={errors.start_with?.message}
+              fullWidth
+            />
+          )}
         />
+
+        {/* ... other Controller components for the remaining fields ... */}
       </Stack>
+
+      {/* Submit button with styling */}
       <Button
         variant="contained"
         sx={{
@@ -97,12 +175,13 @@ const ImageEditForm = ({ formData }: EditFormProps) => {
           ":hover": {
             backgroundColor: "var(--primary-gold-foreground)",
           },
+          mt: 2,
         }}
         type="submit"
       >
         Submit
       </Button>
-    </form>
+    </Box>
   );
 };
 

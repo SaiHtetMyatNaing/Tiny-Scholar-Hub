@@ -10,11 +10,9 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-import { DrawRounded } from "@mui/icons-material";
-import Image from "next/image";
+import {  DrawRounded } from "@mui/icons-material";
 import { useRouter } from "next/navigation";
 import { useSideBarStore } from "../store/useSideBarStore";
-import AlertDialog from "./canvas";
 import MainIcon from "@/public/icons/Logo";
 
 export default function LeftDrawer() {
@@ -31,7 +29,7 @@ export default function LeftDrawer() {
   ];
 
   const pages = [
-    { id: 1, title: "Home", path: "/", icon: <DrawRounded /> },
+    { id: 1, title: "Home", path: "/", icon: <DrawRounded />  },
     { id: 2, title: "Workbook", path: "/workbook", icon: <DrawRounded /> },
     { id: 3, title: "Flashcards", path: "/flashcards", icon: <DrawRounded /> },
     {

@@ -42,7 +42,7 @@ const LessonPlanSection = () => {
                   {lesson.title}
                 </Typography>
 
-                <Box className="flex justify-between max-w-4xl mb-2 gap-4">
+                <Box className="flex flex-col md:flex-row justify-between max-w-4xl mb-2 gap-4">
                   <Box className="flex gap-1">
                     <Typography>{lesson.title_mm} - </Typography>
                     <Typography variant="body1">{lesson.subject}</Typography>

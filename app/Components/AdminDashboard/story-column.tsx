@@ -44,7 +44,7 @@ export const StorySegmentColumns: ColumnDef<StorySegment>[] = [
     cell: ({ row }) => {
       return (
         <Box className="flex gap-2">
-          <EditDialogSlide title="Edit">
+          <EditDialogSlide dialogTitle="Edit">
             <StoryEditForm formData={row.original} />
           </EditDialogSlide>
           <DeleteDialog id={row.original.id} />

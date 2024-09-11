@@ -1,13 +1,11 @@
-"use client";
 import * as React from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import Slide from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
-import { DialogTitle, Typography } from "@mui/material";
-
-import { DangerousOutlined } from "@mui/icons-material";
+import { DialogTitle, Typography, IconButton } from "@mui/material";
+import { Close } from "@mui/icons-material";
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -37,7 +35,9 @@ export default function DialogBox({
 
   return (
     <>
-      <Typography onClick={handleClickOpen} className="cursor-pointer select-none">{title}</Typography>
+      <Typography onClick={handleClickOpen} className="cursor-pointer select-none">
+        {title}
+      </Typography>
 
       <Dialog
         open={open}
@@ -45,16 +45,33 @@ export default function DialogBox({
         keepMounted
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
+        fullWidth  // Make the dialog take up the full width on smaller screens
+        maxWidth="md" // Set a maximum width for larger screens
+        PaperProps={{
+          sx: {
+            // Responsive styles using media queries
+            maxWidth: {
+              xs: "95%", // ~95% width on mobile
+              sm: "80%", // ~80% width on tablets
+              md: "60%", // ~60% width on desktops
+            },
+            maxHeight: "80vh", // Prevent the dialog from becoming too tall
+            overflowY: "auto", // Add scrollbar if content overflows
+          },
+        }}
       >
-        <DialogContent className="max-w-5xl">
-          <DialogTitle
-            height={60}
-            className="flex justify-end w-full cursor-pointer"
-          >
-            <DangerousOutlined
-              onClick={handleClose}
-              className="-mr-5 cursor-pointer hover:text-gray-500"
-            />
+        <DialogContent>
+          <DialogTitle sx={{ 
+            m: 0,
+            p: 2,
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+           }}>
+            <Typography variant="h6">{title}</Typography>
+            <IconButton aria-label="close" onClick={handleClose}>
+              <Close />
+            </IconButton>
           </DialogTitle>
           {children}
         </DialogContent>

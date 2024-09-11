@@ -38,10 +38,10 @@ export default function RootLayout({
         />
       </head>
 
-      <body className={inter.className}>
+      <body className={`${inter.className}`}>
         <ClerkProvider>
           <TopNavBar />
-          <main className="w-full max-w-full mx-auto">{children}</main>
+          <main className="w-full max-w-full mx-auto ">{children}</main>
           <Whiteboard />
         </ClerkProvider>
       </body>

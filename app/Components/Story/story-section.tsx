@@ -59,8 +59,8 @@ export default function StorySection() {
                 </span>
                 <Box
                   onClick={() => {
-                    story.sentences.map((sentence, i) => {
-                      speakText(sentence);
+                    story.sentences.map((item, i) => {
+                      speakText(item.sentence);
                     });
                   }}
                   className="absolute top-5 right-6 text-gray-400 hover:text-black cursor-pointer"
@@ -77,8 +77,8 @@ export default function StorySection() {
                   />
                 </Box>
                 <Box className="w-[20em]">
-                  {story.sentences.map((sentence, i) => {
-                    return <Typography key={i}>{sentence}</Typography>;
+                  {story.sentences.map((item, i) => {
+                    return <Typography key={i}>{item.sentence}</Typography>;
                   })}
                 </Box>
               </Box>

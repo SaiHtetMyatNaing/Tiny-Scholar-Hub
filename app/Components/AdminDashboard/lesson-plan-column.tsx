@@ -1,12 +1,7 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { Box } from "@mui/material";
-import EditDialogSlide from "./edit-dialog";
 import DeleteDialog from "./delete-dialog";
-import CreateDialogSlide from "./create-dialog";
-import StorySegmentForm from "../Form/story-create-form";
 import { LessonPlanProps } from "@/app/types/lesson-plan";
-import { slice } from "lodash";
-import StoryEditForm from "../Form/story-edit-form";
 import { LessonPlanEditForm } from "../Form/lesson-plan-edit-form";
 import DialogBox from "../dialog";
 
@@ -42,7 +37,7 @@ export const LessonPlanSegmentColumns: ColumnDef<LessonPlanProps>[] = [
         })),
       };
       return (
-        <DialogBox title={objectives[0].objective.slice(0, 34)}>
+        <DialogBox title={row.original.learning_objectives_mm}>
           <LessonPlanEditForm
             onSubmit={() => console.log("Success")}
             formData={transformedData}
@@ -61,9 +56,9 @@ export const LessonPlanSegmentColumns: ColumnDef<LessonPlanProps>[] = [
           sentence: item.material,
         })),
       };
-      
+
       return (
-        <DialogBox title={materials[0].material.slice(0, 34)}>
+        <DialogBox title={row.original.instructional_materials_mm}>
           <LessonPlanEditForm
             onSubmit={() => console.log("Success")}
             formData={transformedData}
@@ -79,21 +74,16 @@ export const LessonPlanSegmentColumns: ColumnDef<LessonPlanProps>[] = [
       const procedures = row.original.instructional_procedures;
       const transformedData = {
         sentences: procedures.map((item) => ({
-          sentence: item.description.map((item)=> item.activity).join('\n'),
+          sentence: item.description.map((item) => item.activity).join("\n"),
         })),
       };
-
-      console.log(transformedData);
-      
-      
       return (
-        <DialogBox title='hello'>
-        <LessonPlanEditForm
-          onSubmit={() => console.log("Success")}
-          formData={transformedData}
-        />
-      </DialogBox>
-        
+        <DialogBox title={row.original.instructional_procedures_mm}>
+          <LessonPlanEditForm
+            onSubmit={() => console.log("Success")}
+            formData={transformedData}
+          />
+        </DialogBox>
       );
     },
   },
@@ -107,9 +97,9 @@ export const LessonPlanSegmentColumns: ColumnDef<LessonPlanProps>[] = [
           sentence: item.strategy,
         })),
       };
-      
+
       return (
-        <DialogBox title={differentiations[0].strategy.slice(0, 34)}>
+        <DialogBox title={row.original.differentiation_mm}>
           <LessonPlanEditForm
             onSubmit={() => console.log("Success")}
             formData={transformedData}
@@ -128,9 +118,9 @@ export const LessonPlanSegmentColumns: ColumnDef<LessonPlanProps>[] = [
           sentence: item.method,
         })),
       };
-      
+
       return (
-        <DialogBox title={assessments[0].method.slice(0, 34)}>
+        <DialogBox title={row.original.assessment_mm}>
           <LessonPlanEditForm
             onSubmit={() => console.log("Success")}
             formData={transformedData}
@@ -149,9 +139,9 @@ export const LessonPlanSegmentColumns: ColumnDef<LessonPlanProps>[] = [
           sentence: item.tool,
         })),
       };
-      
+
       return (
-        <DialogBox title={integrations[0].tool.slice(0, 34)}>
+        <DialogBox title={row.original.technology_integration_mm}>
           <LessonPlanEditForm
             onSubmit={() => console.log("Success")}
             formData={transformedData}
@@ -170,9 +160,9 @@ export const LessonPlanSegmentColumns: ColumnDef<LessonPlanProps>[] = [
           sentence: item.tip,
         })),
       };
-      
+
       return (
-        <DialogBox title={managements[0].tip.slice(0, 34)}>
+        <DialogBox title={row.original.time_management_mm}>
           <LessonPlanEditForm
             onSubmit={() => console.log("Success")}
             formData={transformedData}
@@ -191,9 +181,9 @@ export const LessonPlanSegmentColumns: ColumnDef<LessonPlanProps>[] = [
           sentence: item.point,
         })),
       };
-      
+
       return (
-        <DialogBox title={reflections[0].point.slice(0, 34)}>
+        <DialogBox title={row.original.reflection_mm}>
           <LessonPlanEditForm
             onSubmit={() => console.log("Success")}
             formData={transformedData}
@@ -208,7 +198,6 @@ export const LessonPlanSegmentColumns: ColumnDef<LessonPlanProps>[] = [
     cell: ({ row }) => {
       return (
         <Box className="flex gap-2">
-          <EditDialogSlide title="Edit">Hello</EditDialogSlide>
           <DeleteDialog id={row.original.id} />
         </Box>
       );
@@ -216,11 +205,7 @@ export const LessonPlanSegmentColumns: ColumnDef<LessonPlanProps>[] = [
   },
   {
     id: "action",
-    header: () => (
-         <DialogBox title="Create">
-           Hello
-         </DialogBox>
-    ),
+    header: () => <DialogBox title="Create">Hello</DialogBox>,
     accessorKey: "action",
     size: 30,
   },
