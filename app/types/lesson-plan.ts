@@ -8,29 +8,58 @@ export interface LessonPlanProps {
   grade_level_mm: string;
   duration: string;
   duration_mm: string;
-  learning_objectives: {objective : string}[] ;
+  learning_objectives: LearningObjectivesData;
   learning_objectives_mm: string;
-  instructional_materials: { material : string }[];
+  instructional_materials: InstructionalMaterialsData;
   instructional_materials_mm: string;
-  instructional_procedures: InstructionalProcedure[];
+  instructional_procedures: InstructionalProceduresData;
   instructional_procedures_mm: string;
-  differentiation: { strategy : string}[];
+  differentiation: DifferentiationData;
   differentiation_mm: string;
-  assessment: { method : string}[];
+  assessment: AssessmentData;
   assessment_mm: string;
-  technology_integration: { tool : string}[];
+  technology_integration: TechnologyIntegrationData;
   technology_integration_mm: string;
-  time_management: { tip : string}[];
+  time_management: TimeManagementData;
   time_management_mm: string;
-  reflection: {point : string}[];
+  reflection: ReflectionData;
   reflection_mm: string;
-  }
-  
+}
+
 export interface InstructionalProcedure {
-    step_number: number;
-    title: string;
-    description: { activity : string }[];
+  step_number: number;
+  title: string;
+  description: { activity: string }[];
+}
 
-  }
+interface LearningObjectivesData {
+  learning_objectives: { objective: string }[];
+}
 
-  
+interface InstructionalMaterialsData {
+  instructional_materials: { material: string }[];
+}
+
+interface InstructionalProceduresData {
+  instructional_procedures: InstructionalProcedure[];
+}
+
+interface DifferentiationData {
+  differentiation: { strategy: string }[];
+}
+
+interface AssessmentData {
+  assessment: { method: string }[];
+}
+
+interface TechnologyIntegrationData {
+  technology_integration: { tool: string }[];
+}
+
+interface TimeManagementData {
+  time_management: { tip: string }[];
+}
+
+interface ReflectionData {
+  reflection: { point: string }[];
+}

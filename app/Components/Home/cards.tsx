@@ -16,9 +16,11 @@ export default function Cards() {
   const { scrollY } = useScroll(); // Track Scroll position
   const [fadePosition, setFadePosition] = React.useState<number>(0);
 
-  const handleScrollChange = React.useCallback((latest: number) => {
+  const handleScrollChange =(latest: number) => {
     if (fadePosition! < 50) setFadePosition(latest);
-  }, [fadePosition]); // The callback will only be recreated if dependencies change
+    if (fadePosition! > 50) setFadePosition(latest);
+  }; 
+
   useMotionValueEvent(scrollY, "change", handleScrollChange);
 
   return (
