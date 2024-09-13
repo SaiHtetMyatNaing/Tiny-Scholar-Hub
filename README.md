@@ -18,64 +18,11 @@ Tiny Scholar Hub is an educational website empowering young learners with intera
 
 - **Frontend:**
   - Next.js (React Framework)
+  - Material Ui(Styling)
   - Tailwind CSS (Styling)
 - **Backend:**
-  - Supabase (Database & Authentication)
-
-## Project Structure
-
-```json
-{
-  "name": "tiny-scholar-hub-v4",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@clerk/nextjs": "^5.3.7",
-    "@emotion/cache": "^11.13.1",
-    "@emotion/react": "^11.13.3",
-    "@emotion/styled": "^11.13.0",
-    "@hookform/resolvers": "^3.9.0",
-    "@mui/icons-material": "^6.0.2",
-    "@mui/lab": "^6.0.0-beta.9",
-    "@mui/material": "^6.0.1",
-    "@mui/material-nextjs": "^6.0.1",
-    "@supabase/ssr": "^0.5.1",
-    "@supabase/supabase-js": "^2.45.4",
-    "@tanstack/react-table": "^8.20.5",
-    "dotenv": "^16.4.5",
-    "framer-motion": "^11.3.31",
-    "lodash": "^4.17.21",
-    "next": "14.2.7",
-    "react": "^18",
-    "react-dom": "^18",
-    "react-pageflip": "^2.0.3",
-    "react-sketch-canvas": "^6.2.0",
-    "swiper": "^11.1.11",
-    "tailwind-scrollbar-hide": "^1.1.7",
-    "zod": "^3.23.8",
-    "zustand": "^4.5.5"
-  },
-  "devDependencies": {
-    "@types/lodash": "^4.17.7",
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.7",
-    "postcss": "^8",
-    "supabase": "^1.192.5",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5"
-  }
-}
-```
-````
+  - Supabase (Database)
+  - Clerk Authentication
 
 ## Getting Started
 
@@ -105,11 +52,9 @@ Tiny Scholar Hub is an educational website empowering young learners with intera
 
 5. **Open your browser and visit:** `http://localhost:3000`
 
-
 ## Contact
 
 For inquiries or feedback, feel free to reach out:
 
 - **Email:** [tinyscholarhub@gmail.com]
-
-
+````
