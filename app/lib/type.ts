@@ -25,3 +25,13 @@ export type WordItem = {
     sentences : { sentence: string }[]
   }
 
+
+export type FlashcardProps = {
+  id: number;
+  created_at: string;
+  updated_at: string;
+  name_mm: string;
+  name_en: string;
+  image_url: string;
+  character: string;
+}

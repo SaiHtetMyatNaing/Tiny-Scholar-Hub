@@ -1,11 +1,30 @@
 import { Container } from "@mui/material";
 
-import CardComponent from "../Components/FlashCard/card-section";
+import CardComponent, { CharProps } from "../Components/FlashCard/card-section";
+import { supabase } from "../utils/supabase-client";
 
-const Page = () => {
+const Page = async () => {
+  const fetchData = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("flashcards")
+        .select("character");
+      if (error) {
+        console.log(error.message);
+        return null;
+      }
+      return data;
+    } catch (error) {
+      console.error("An unexpected error occurred:", error);
+      return null;
+    }
+  };
+
+  const FlashcardsData : CharProps[] | null = await fetchData();
+  
   return (
     <Container>
-      <CardComponent />
+      {FlashcardsData && <CardComponent data={FlashcardsData} />}
     </Container>
   );
 };

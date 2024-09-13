@@ -1,14 +1,22 @@
-'use client'
-import { myanmarAlphabet } from "@/app/lib/myanmar-alphabet";
+"use client";
 import { Box, Container, Paper, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useMemo } from "react";
+import React from "react";
 
-const CardComponent = () => {
-  const alphabet: string[] = useMemo(() => myanmarAlphabet, []);
+export type CharProps = {
+  character: string;
+};
 
+
+const CardComponent = ({ data } : {data :CharProps[]}) => {
+
+  const uniqueCharacters = Array.from(
+    new Set(data.map((item) => item.character))
+  ).map((character) => {
+    return data.find((item) => item.character === character);
+  });
   return (
     <Container className="flex w-full items-center select-none justify-between gap-3 max-w-5xl flex-wrap">
       <Typography
@@ -19,36 +27,36 @@ const CardComponent = () => {
       >
         {"Alphabet Learning Cards"}
       </Typography>
-      {alphabet.map((character, i) => {
-        return (
-          <Paper
-            component={motion.div}
-            elevation={3}
-            key={i}
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration:  0.3 * 1  }}
-            whileHover={{ scale: 0.9 }}
-            className="max-w-md text-md text-center shadow-sm flex z-10  mx-auto border-[#ffd700] border rounded-md overflow-hidden   items-start justify-center w-[13.5em] h-[15em]"
-          >
-            <Link
+      {data &&
+        uniqueCharacters.map((character ,i) => {
+          return (
+            <Paper
+              component={motion.div}
+              elevation={3}
               key={i}
-              href={`/flashcards/${character}`}
-              className="cursor-pointerhover:scale-105 flex  flex-col transform transition-all"
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3 * 1 }}
+              whileHover={{ scale: 0.9 }}
+              className="max-w-md text-md text-center shadow-sm flex z-10  mx-auto border-[#ffd700] border rounded-md overflow-hidden   items-start justify-center w-[13.5em] h-[15em]"
             >
+              <Link
+                key={i}
+                href={`/flashcards/${character?.character}`}
+                className="cursor-pointerhover:scale-105 flex  flex-col transform transition-all"
+              >
                 <Image
-                src="/caterpillar_က.png"
-                alt="crane_picture"
-                className="object-cover"
-                width={200}
-                height={200}
-              />
-              <Box className="text-xl">{character}</Box>
-              
-            </Link>
-          </Paper>
-        );
-      })}
+                  src="/caterpillar_က.png"
+                  alt="crane_picture"
+                  className="object-cover"
+                  width={200}
+                  height={200}
+                />
+                <Box className="text-xl">{character?.character}</Box>
+              </Link>
+            </Paper>
+          );
+        })}
     </Container>
   );
 };

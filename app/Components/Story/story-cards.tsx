@@ -19,8 +19,6 @@ const StoryCards = ({ data }: { data: StoryCardProps[] }) => {
     return data.find((item) => item.story_id === story_id);
   });
 
-  console.log(uniqueStories);
-
   return (
     <Container className="flex w-full items-center select-none justify-between gap-3 max-w-5xl flex-wrap">
       <Typography

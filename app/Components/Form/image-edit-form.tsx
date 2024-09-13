@@ -3,6 +3,7 @@ import { Button, Stack, TextField, Box } from "@mui/material";
 import { z } from "zod";
 import { EditFormSchema } from "@/app/schema/form-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { FlashcardProps } from "@/app/lib/type";
 
 // Define the type for the form data based on the Zod schema
 type FormData = z.infer<typeof EditFormSchema>;
@@ -10,7 +11,7 @@ type FormData = z.infer<typeof EditFormSchema>;
 // Interface for the props that the EditForm component expects
 export interface EditFormProps {
   // handleClose: () => void; // Commented out, might be used later
-  formData: FormData; // Initial form data to populate the fields
+  formData: FlashcardProps; // Initial form data to populate the fields
 }
 
 const ImageEditForm = ({ formData }: EditFormProps) => {
@@ -23,14 +24,7 @@ const ImageEditForm = ({ formData }: EditFormProps) => {
     formState: { errors },
   } = useForm<FormData>({
     defaultValues: {
-      // Populate default values from the provided formData prop
-      id: formData.id,
-      created_at: formData.created_at,
-      name_en: formData.name_en,
-      name_mm: formData.name_mm,
-      svg_content: formData.svg_content,
-      updated_at: formData.updated_at,
-      start_with: formData.start_with,
+      ...formData
     },
     resolver: zodResolver(EditFormSchema), // Use Zod for schema validation
   });
@@ -119,15 +113,15 @@ const ImageEditForm = ({ formData }: EditFormProps) => {
         />
 
         <Controller
-          name="svg_content"
+          name="image_url"
           control={control}
           render={({ field }) => (
             <TextField
               label="SVG URl"
               type="text"
               {...field}
-              error={!!errors.svg_content}
-              helperText={errors.svg_content?.message}
+              error={!!errors.image_url}
+              helperText={errors.image_url?.message}
               fullWidth
             />
           )}

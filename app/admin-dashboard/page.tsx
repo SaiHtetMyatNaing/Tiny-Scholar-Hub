@@ -5,14 +5,21 @@ import { Container } from "@mui/material";
 
 const page = async () => {
   const { data: LessonPlanData } = await supabase
-    .from("lesson-plan ")
+    .from("lesson-plan")
     .select("*");
   const { data: StoryData } = await supabase.from("stories").select("*");
+  const { data: FlashCardsData } = await supabase
+    .from("flashcards")
+    .select("*");
 
   return (
     <>
-      {LessonPlanData && StoryData && (
-        <AdminPanel StoryData={StoryData} LessonPlanData={LessonPlanData} />
+      {LessonPlanData && StoryData && FlashCardsData && (
+        <AdminPanel
+          FlashCardsData={FlashCardsData}
+          StoryData={StoryData}
+          LessonPlanData={LessonPlanData}
+        />
       )}
     </>
   );

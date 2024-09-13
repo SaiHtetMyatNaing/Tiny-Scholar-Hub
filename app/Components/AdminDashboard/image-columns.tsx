@@ -1,13 +1,15 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { Box } from "@mui/material";
-import { MockDataProps } from "@/app/types/mock-data";
-import EditDialogSlide from "./edit-dialog";
-import DeleteDialog from "./delete-dialog";
 import CreateDialogSlide from "./create-dialog";
 import ImageCreationForm from "../Form/image-create-form";
 import ImageEditForm from "../Form/image-edit-form";
+import { FlashcardProps } from "@/app/lib/type";
+import EditDialogSlide from "./edit-dialog";
+import DeleteDialog from "./delete-dialog";
 
-export const ImageColumns: ColumnDef<MockDataProps>[] = [
+
+
+export const ImageColumns: ColumnDef<FlashcardProps>[] = [
   {
     header: "Id",
     accessorKey: "id",
@@ -21,8 +23,9 @@ export const ImageColumns: ColumnDef<MockDataProps>[] = [
     accessorKey: "name_en",
   },
   {
-    header: "SVG",
-    accessorKey: "svg_content",
+    header: "Image Url",
+    accessorKey: "image_url",
+    minSize : 230,
   },
   {
     header: "Start With",

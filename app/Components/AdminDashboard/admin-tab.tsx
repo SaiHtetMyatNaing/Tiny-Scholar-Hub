@@ -11,14 +11,16 @@ import { data } from "@/app/lib/mock-data";
 import { ImageColumns } from "./image-columns";
 import { LessonPlanSegmentColumns } from "./lesson-plan-column";
 import { LessonPlanProps } from "@/app/types/lesson-plan";
-import { StorySegmentProps } from "@/app/lib/type";
+import { FlashcardProps, StorySegmentProps } from "@/app/lib/type";
 
 export default function AdminPanel({
   LessonPlanData,
   StoryData,
+  FlashCardsData,
 }: {
   StoryData: StorySegmentProps[];
   LessonPlanData: LessonPlanProps[];
+  FlashCardsData : FlashcardProps[]
 }) {
   const [value, setValue] = React.useState("2");
 
@@ -31,13 +33,13 @@ export default function AdminPanel({
       <TabContext value={value}>
         <Box sx={{ borderColor: "black" }} className="max-w-sm mx-auto">
           <TabList onChange={handleChange}>
-            <Tab label="Images" value="1" />
+            <Tab label="Flashcards" value="1" />
             <Tab label="Story" value="2" />
             <Tab label="Lesson Plan" value="3" />
           </TabList>
         </Box>
         <TabPanel value="1">
-          <DataTable columns={ImageColumns} data={data} />
+          <DataTable columns={ImageColumns} data={FlashCardsData} />
         </TabPanel>
         <TabPanel value="2">
           <DataTable columns={StorySegmentColumns} data={StoryData} />
