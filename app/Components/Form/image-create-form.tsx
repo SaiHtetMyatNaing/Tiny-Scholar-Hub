@@ -3,6 +3,7 @@ import { Button, Stack, TextField } from "@mui/material";
 import { z } from "zod";
 import { EditFormSchema } from "@/app/schema/form-schema";
 import { zodResolver } from '@hookform/resolvers/zod';
+import { FlashcardProps } from "@/app/lib/type";
 type FormData = z.infer<typeof EditFormSchema>;
 
 export interface EditFormProps {
@@ -16,20 +17,11 @@ const ImageCreationForm = () => {
     reset,
     handleSubmit,
     formState: errors,
-  } = useForm<FormData>({
-    defaultValues: {
-      id: 1,
-      created_at: "",
-      name_en: "",
-      name_mm: "",
-      svg_content: "",
-      updated_at: "",
-      start_with: "",
-    },
+  } = useForm<FlashcardProps>({
     resolver: zodResolver(EditFormSchema),
   });
 
-  const onFormSubmit = (value: FormData) => {
+  const onFormSubmit = (value: FlashcardProps) => {
     console.log(value);
     reset();
   };
@@ -69,9 +61,9 @@ const ImageCreationForm = () => {
         <TextField
           label="SVG URl"
           type="text"
-          {...register("svg_content")}
-          error={!!errors.errors.svg_content}
-          helperText={errors.errors.svg_content?.message}
+          {...register("image_url")}
+          error={!!errors.errors.image_url}
+          helperText={errors.errors.image_url?.message}
         />
         <TextField
           label="Updated At"
@@ -83,9 +75,9 @@ const ImageCreationForm = () => {
         <TextField
           label="Starts With"
           type="text"
-          {...register("start_with")}
-          error={!!errors.errors.start_with}
-          helperText={errors.errors.start_with?.message}
+          {...register("character")}
+          error={!!errors.errors.character}
+          helperText={errors.errors.character?.message}
         />
       </Stack>
       <Button

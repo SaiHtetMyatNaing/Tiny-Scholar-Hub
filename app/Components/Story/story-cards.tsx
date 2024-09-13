@@ -1,6 +1,4 @@
 "use client";
-import { myanmarAlphabet } from "@/app/lib/myanmar-alphabet";
-import { StorySegmentProps } from "@/app/lib/type";
 import { Box, Container, Paper, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 import Image from "next/image";

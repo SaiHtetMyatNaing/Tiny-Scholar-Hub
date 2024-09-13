@@ -7,7 +7,6 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import { DataTable } from "./data-table";
 import { StorySegmentColumns } from "./story-column";
-import { data } from "@/app/lib/mock-data";
 import { ImageColumns } from "./image-columns";
 import { LessonPlanSegmentColumns } from "./lesson-plan-column";
 import { LessonPlanProps } from "@/app/types/lesson-plan";

@@ -7,8 +7,6 @@ import { FlashcardProps } from "@/app/lib/type";
 import EditDialogSlide from "./edit-dialog";
 import DeleteDialog from "./delete-dialog";
 
-
-
 export const ImageColumns: ColumnDef<FlashcardProps>[] = [
   {
     header: "Id",
@@ -25,11 +23,15 @@ export const ImageColumns: ColumnDef<FlashcardProps>[] = [
   {
     header: "Image Url",
     accessorKey: "image_url",
-    minSize : 230,
+    maxSize: 100,
   },
   {
     header: "Start With",
     accessorKey: "start_with",
+    cell: ({ row }) => {
+      const character = row.original.character;
+      return <Box className="flex gap-2">{character}</Box>;
+    },
   },
   {
     header: "Created At",
@@ -46,7 +48,7 @@ export const ImageColumns: ColumnDef<FlashcardProps>[] = [
       return (
         <Box className="flex gap-2">
           <EditDialogSlide dialogTitle="Edit">
-            <ImageEditForm formData={row.original}/>
+            <ImageEditForm formData={row.original} />
           </EditDialogSlide>
           <DeleteDialog id={row.original.id} />
         </Box>

@@ -9,7 +9,6 @@ export type CharProps = {
   character: string;
 };
 
-
 const CardComponent = ({ data } : {data :CharProps[]}) => {
 
   const uniqueCharacters = Array.from(

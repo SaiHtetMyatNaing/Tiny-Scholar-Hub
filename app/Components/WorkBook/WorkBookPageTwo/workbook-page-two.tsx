@@ -5,8 +5,6 @@ import Image from "next/image";
 import WorksheetHeader from "../workbook-header";
 import MatchingSection from "./matching-section";
 import WorkSheetFooter from "../workbook-footer";
-import { createAuthenticatedClient } from "@/app/utils/supabase-client";
-import { useAuth } from "@clerk/nextjs";
 
 interface DataRecord {
   created_at: string | null;

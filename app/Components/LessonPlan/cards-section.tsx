@@ -1,5 +1,4 @@
 "use client";
-import { myanmarAlphabet } from "@/app/lib/myanmar-alphabet";
 import { LessonPlanProps } from "@/app/types/lesson-plan";
 import { Box, Container, Paper, Typography } from "@mui/material";
 import { motion } from "framer-motion";
