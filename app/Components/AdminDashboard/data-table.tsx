@@ -42,14 +42,13 @@ export function DataTable<TData, TValue>({
     state: {
       globalFilter: debounceFiltering, //To reduce unnecessary rendering
     },
-
     defaultColumn : {
-      size : 100 , minSize : 50 , maxSize : 500
+      size : 60
      }
   });
   
   return (
-    <TableContainer component={Paper} className="p-2">
+    <TableContainer component={Paper} className="p-2 scrollbar-hide">
       <Box className="flex items-center justify-between mx-auto">
         <TextField
           type="text"
@@ -60,14 +59,18 @@ export function DataTable<TData, TValue>({
           onChange={(e) => setFiltering(e.target.value)}
         />
       </Box>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
+      <Table sx={{ minWidth: 1000 }} aria-label="simple table">
+        <TableHead >
           {table.getHeaderGroups().map((headerGroup) => {
             return (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableCell key={header.id}>
+                    <TableCell key={header.id}
+                    style={{
+                      width: header.column.getSize(),
+                      minWidth: header.column.columnDef.minSize,
+                    }}>
                       {header.isPlaceholder
                         ? null
                         : flexRender(

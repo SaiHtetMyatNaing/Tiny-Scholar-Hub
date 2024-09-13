@@ -1,28 +1,22 @@
 "use client";
-import React, { useMemo } from "react";
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
-
-// import required modules
 import {
   EffectCoverflow,
   Pagination,
   Keyboard,
   Mousewheel,
 } from "swiper/modules";
-import { story } from "@/app/lib/story-data";
 import Image from "next/image";
 import { Box, Paper, Typography } from "@mui/material";
 import { VolumeUp } from "@mui/icons-material";
 import { speakText } from "@/app/lib/myanmar-speect";
 import { motion } from "framer-motion";
+import { StorySegmentProps } from "@/app/lib/type";
 
-export default function StorySection() {
-  const storyData = useMemo(() => story, []);
+export default function StorySection({data} : {data: StorySegmentProps[]}) {
   return (
     <motion.div
     initial={{ scale : 0 , opacity : 0 }} 
@@ -45,8 +39,8 @@ export default function StorySection() {
         pagination={true}
         modules={[EffectCoverflow, Pagination, Keyboard, Mousewheel]}
         className="w-full"
-      >
-        {storyData.map((story, i) => {
+      >  
+        {data && data.length > 0 && data?.map((story, i) => {
           return (
             <SwiperSlide
               className="max-w-2xl p-4 rounded-md border relative border-[#ffd700] bg-white"
@@ -59,7 +53,7 @@ export default function StorySection() {
                 </span>
                 <Box
                   onClick={() => {
-                    story.sentences.map((item, i) => {
+                    story.sentences.sentences.map((item, i) => {
                       speakText(item.sentence);
                     });
                   }}
@@ -68,16 +62,16 @@ export default function StorySection() {
                   <VolumeUp />
                 </Box>
                 <Box className="w-[20em] h-[20em]">
-                  <Image
-                    src={story.image}
+                  {story.image_url && <Image
+                    src={story.image_url}
                     alt="hello"
                     className="object-contain w-full h-full"
                     width={200}
                     height={200}
-                  />
+                  />}
                 </Box>
                 <Box className="w-[20em]">
-                  {story.sentences.map((item, i) => {
+                  {story.sentences.sentences.map((item, i) => {
                     return <Typography key={i}>{item.sentence}</Typography>;
                   })}
                 </Box>

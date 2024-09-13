@@ -5,23 +5,25 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useForm, Controller, useFieldArray } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { StorySegment } from "@/app/lib/story-data";
 import { register } from "module";
+import { StorySegmentProps } from "@/app/lib/type";
 
 // Defining StorySegment schema using Zod
 const storySegmentSchema = z.object({
   id: z.number().positive(),
+  story_slide: z.number().positive(),
+  story_id: z.number().positive(),
   sentences: z.array(
     z.object({
       sentence: z.string().min(1),
     })
   ),
-  image: z.string().url(),
+  image_url: z.string().url(),
 });
 
 type StoryProps = z.infer<typeof storySegmentSchema>;
 
-const StoryEditForm = ({ formData }: { formData: StoryProps }) => {
+const StoryEditForm = ({ formData }: { formData: StorySegmentProps }) => {
   // Using useForm with Zod resolver
   const {
     control,
@@ -32,13 +34,7 @@ const StoryEditForm = ({ formData }: { formData: StoryProps }) => {
     resolver: zodResolver(storySegmentSchema),
     defaultValues: {
       ...formData,
-      sentences:
-        formData.sentences.length < 4
-          ? [
-              ...formData.sentences,
-              ...Array(4 - formData.sentences.length).fill(""),
-            ]
-          : formData.sentences,
+      sentences: formData.sentences.sentences,
     },
   });
 
@@ -124,11 +120,11 @@ const StoryEditForm = ({ formData }: { formData: StoryProps }) => {
           </Button>
 
           <TextField
-            {...register("image")}
+            {...register("image_url")}
             label="Image URL"
             fullWidth
-            error={!!errors.image}
-            helperText={errors.image?.message}
+            error={!!errors.image_url}
+            helperText={errors.image_url?.message}
           />
 
           <Button

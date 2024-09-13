@@ -16,15 +16,18 @@ export default function Cards() {
   const { scrollY } = useScroll(); // Track Scroll position
   const [fadePosition, setFadePosition] = React.useState<number>(0);
 
-  const handleScrollChange =(latest: number) => {
+  const handleScrollChange = (latest: number) => {
     if (fadePosition! < 50) setFadePosition(latest);
     if (fadePosition! > 50) setFadePosition(latest);
-  }; 
+  };
 
   useMotionValueEvent(scrollY, "change", handleScrollChange);
 
   return (
-    <Box className="flex max-w-6xl gap-4 sm:mt-14 md:mt-0 flex-wrap items-center  mx-auto p-2">
+    <Box
+      component={motion.div}
+      className="flex max-w-6xl gap-4 sm:mt-14 md:mt-0 flex-wrap items-center  mx-auto p-2"
+    >
       <Typography
         component={motion.header}
         initial={{ opacity: 0 }}
@@ -57,21 +60,21 @@ export default function Cards() {
               key={i}
               initial={{ opacity: 0, scale: 0.4 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.1 }}
+              transition={{ duration: 1 }}
               whileHover={{ scale: 0.9 }}
               sx={{
-                display: 'flex',
-                mx: 'auto',
-                alignItems: 'center',
-                overflow: 'hidden',
-                userSelect: 'none',
-                border: '1px solid #f5c13d',
-                cursor: 'pointer',
-                borderRadius: '12px',
-                justifyContent: 'center',
-                objectFit: 'contain',
-                gap: '4px',
-                flexDirection: 'column',
+                display: "flex",
+                mx: "auto",
+                alignItems: "center",
+                overflow: "hidden",
+                userSelect: "none",
+                border: "1px solid #f5c13d",
+                cursor: "pointer",
+                borderRadius: "12px",
+                justifyContent: "center",
+                objectFit: "contain",
+                gap: "4px",
+                flexDirection: "column",
               }}
             >
               <Box className="h-60  w-[17em]">

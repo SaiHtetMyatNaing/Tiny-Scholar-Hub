@@ -7,23 +7,29 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import { DataTable } from "./data-table";
 import { StorySegmentColumns } from "./story-column";
-import { story } from "@/app/lib/story-data";
 import { data } from "@/app/lib/mock-data";
 import { ImageColumns } from "./image-columns";
-import { lessonPlan } from "@/app/lib/lesson-plan";
 import { LessonPlanSegmentColumns } from "./lesson-plan-column";
+import { LessonPlanProps } from "@/app/types/lesson-plan";
+import { StorySegmentProps } from "@/app/lib/type";
 
-export default function AdminPanel() {
-  const [value, setValue] = React.useState("1");
+export default function AdminPanel({
+  LessonPlanData,
+  StoryData,
+}: {
+  StoryData: StorySegmentProps[];
+  LessonPlanData: LessonPlanProps[];
+}) {
+  const [value, setValue] = React.useState("2");
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
 
   return (
-    <Box sx={{ width: "100%", typography: "body1" }} >
+    <Box sx={{ width: "100%", typography: "body1" }}>
       <TabContext value={value}>
-        <Box sx={{ borderColor: "black" }} className='max-w-sm mx-auto'>
+        <Box sx={{ borderColor: "black" }} className="max-w-sm mx-auto">
           <TabList onChange={handleChange}>
             <Tab label="Images" value="1" />
             <Tab label="Story" value="2" />
@@ -31,13 +37,13 @@ export default function AdminPanel() {
           </TabList>
         </Box>
         <TabPanel value="1">
-        <DataTable columns={ImageColumns} data={data} />
+          <DataTable columns={ImageColumns} data={data} />
         </TabPanel>
         <TabPanel value="2">
-          <DataTable columns={StorySegmentColumns} data={story}/>
+          <DataTable columns={StorySegmentColumns} data={StoryData} />
         </TabPanel>
         <TabPanel value="3">
-            <DataTable  columns={LessonPlanSegmentColumns} data={lessonPlan}/>
+          <DataTable columns={LessonPlanSegmentColumns} data={LessonPlanData} />
         </TabPanel>
       </TabContext>
     </Box>

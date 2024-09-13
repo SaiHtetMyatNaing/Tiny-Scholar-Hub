@@ -30,6 +30,7 @@
     "react-pageflip": "^2.0.3",
     "react-sketch-canvas": "^6.2.0",
     "swiper": "^11.1.11",
+    "tailwind-scrollbar-hide": "^1.1.7",
     "zod": "^3.23.8",
     "zustand": "^4.5.5"
   },

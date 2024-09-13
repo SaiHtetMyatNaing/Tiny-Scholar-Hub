@@ -24,6 +24,7 @@ export interface LessonPlanProps {
   time_management_mm: string;
   reflection: ReflectionData;
   reflection_mm: string;
+  thumbnail_url:string;
 }
 
 export interface InstructionalProcedure {

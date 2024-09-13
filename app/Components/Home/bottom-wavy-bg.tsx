@@ -1,15 +1,16 @@
-'use client'
+"use client";
 import AstronauntIcon from "@/public/icons/astronaunt";
-import { motion} from "framer-motion";
+import { motion } from "framer-motion";
 import React from "react";
 
 const BottomWavyBg = () => {
   return (
     <motion.div
-     initial={{ opacity : 0 , y : 30}}
-     animate={{ opacity : 1 , y :0}}
-     transition={{ duration : 1}}
-    className="w-full max-w-full relative">
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1 }}
+      className="w-full max-w-full relative"
+    >
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
         <path
           fill="#f3f0e8"

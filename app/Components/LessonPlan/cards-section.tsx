@@ -8,7 +8,6 @@ import Link from "next/link";
 import React from "react";
 
 const CardSection = ({ data }: { data: LessonPlanProps }) => {
-  console.log(data.id);
 
   return (
     <Container className="flex w-full items-center select-none justify-between gap-3 max-w-5xl flex-wrap">
@@ -26,13 +25,13 @@ const CardSection = ({ data }: { data: LessonPlanProps }) => {
             href={`/lesson-plan/${data.id}`}
             className="cursor-pointerhover:scale-105 flex  flex-col transform transition-all"
           >
-            <Image
-              src="/hallucination_က.png"
-              alt="crane_picture"
+           {data.thumbnail_url && <Image
+              src={data.thumbnail_url ? data.thumbnail_url : '/Logo.png'}
+              alt={data?.title}
               className="object-cover"
               width={200}
               height={200}
-            />
+            />}
             <Box className="text-xl">{data.title}</Box>
           </Link>
         )}
