@@ -3,7 +3,9 @@
 ````markdown
 # Tiny Scholar Hub
 
-Tiny Scholar Hub is an educational website empowering young learners with interactive tools and engaging content. We strive to make learning fun and accessible, offering a range of resources to support children's educational journey.
+Tiny Scholar Hub is an educational website empowering young learners with interactive tools and
+engaging content.We strive to make learning fun and accessible, offering a range of resources
+to support children's educational journey.
 
 ## Features
 
@@ -22,7 +24,7 @@ Tiny Scholar Hub is an educational website empowering young learners with intera
   - Tailwind CSS (Styling)
 - **Backend:**
   - Supabase (Database)
-  - Clerk Authentication
+  - Clerk (Authentication)
 
 ## Getting Started
 
