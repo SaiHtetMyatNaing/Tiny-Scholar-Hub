@@ -26,34 +26,6 @@ to support children's educational journey.
   - Supabase (Database)
   - Clerk (Authentication)
 
-## Getting Started
-
-1. **Clone the repository:**
-
-   ```bash
-   git clone https://github.com/your-username/tiny-scholar-hub.git
-   ```
-
-2. **Install dependencies:**
-
-   ```bash
-   cd tiny-scholar-hub
-   npm install
-   ```
-
-3. **Set up environment variables:**
-
-   - Create a `.env` file in the root directory.
-   - Refer to `.env.example` for required variables (especially Supabase connection details).
-
-4. **Start the development server:**
-
-   ```bash
-   npm run dev
-   ```
-
-5. **Open your browser and visit:** `http://localhost:3000`
-
 ## Contact
 
 For inquiries or feedback, feel free to reach out:
