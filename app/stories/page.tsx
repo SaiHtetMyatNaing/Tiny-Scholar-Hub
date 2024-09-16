@@ -4,6 +4,9 @@ import StoryCards, { StoryCardProps } from "../Components/Story/story-cards";
 import { supabase } from "../utils/supabase-client";
 import { StorySegmentProps } from "../lib/type";
 
+
+export const revalidate = 0
+
 const page = async () => {
   const fetchData = async () => {
     try {
@@ -21,8 +24,8 @@ const page = async () => {
     }
   };
 
-  const data: StoryCardProps[] | null = await fetchData();
-
+   const data: StoryCardProps[] | null = await fetchData();
+  
   return (
     <Container className="mt-[6em]">
       {data && <StoryCards data={data} />}

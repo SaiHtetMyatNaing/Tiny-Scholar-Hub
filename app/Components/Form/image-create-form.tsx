@@ -7,7 +7,6 @@ import { FlashcardProps } from "@/app/lib/type";
 type FormData = z.infer<typeof EditFormSchema>;
 
 export interface EditFormProps {
-  // handleClose: () => void;
   formData: FormData;
 }
 

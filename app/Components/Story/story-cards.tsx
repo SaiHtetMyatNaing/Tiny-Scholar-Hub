@@ -16,6 +16,7 @@ const StoryCards = ({ data }: { data: StoryCardProps[] }) => {
   ).map((story_id) => {
     return data.find((item) => item.story_id === story_id);
   });
+  
 
   return (
     <Container className="flex w-full items-center select-none justify-between gap-3 max-w-5xl flex-wrap">

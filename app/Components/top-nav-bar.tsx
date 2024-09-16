@@ -2,11 +2,9 @@
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { DrawRounded } from "@mui/icons-material";
 import LeftDrawer from "./drawer";
-import ClerkAuth from "./clerk-auth";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
@@ -62,7 +60,6 @@ export default function TopNavBar() {
                 </Link>
               );
             })}
-            <ClerkAuth />
           </Box>
         </Toolbar>
       </AppBar>

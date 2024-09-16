@@ -17,6 +17,7 @@ import { motion } from "framer-motion";
 import { StorySegmentProps } from "@/app/lib/type";
 
 export default function StorySection({data} : {data: StorySegmentProps[]}) {
+  
   return (
     <motion.div
     initial={{ scale : 0 , opacity : 0 }} 
@@ -51,7 +52,7 @@ export default function StorySection({data} : {data: StorySegmentProps[]}) {
                 <span className="absolute top-5 left-6 bg-gray-200 rounded-md text-center  w-6 h-6">
                   {i + 1}
                 </span>
-                <Box
+               {story && <Box
                   onClick={() => {
                     story.sentences.sentences.map((item, i) => {
                       speakText(item.sentence);
@@ -60,9 +61,9 @@ export default function StorySection({data} : {data: StorySegmentProps[]}) {
                   className="absolute top-5 right-6 text-gray-400 hover:text-black cursor-pointer"
                 >
                   <VolumeUp />
-                </Box>
+                </Box>}
                 <Box className="w-[20em] h-[20em]">
-                  {story.image_url && <Image
+                  {story && story.image_url && <Image
                     src={story.image_url}
                     alt="hello"
                     className="object-contain w-full h-full"
@@ -71,7 +72,7 @@ export default function StorySection({data} : {data: StorySegmentProps[]}) {
                   />}
                 </Box>
                 <Box className="w-[20em]">
-                  {story.sentences.sentences.map((item, i) => {
+                  {story && story.sentences.sentences.map((item, i) => {
                     return <Typography key={i}>{item.sentence}</Typography>;
                   })}
                 </Box>
