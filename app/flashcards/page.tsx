@@ -1,5 +1,4 @@
 import { Container } from "@mui/material";
-
 import CardComponent, { CharProps } from "../Components/FlashCard/card-section";
 import { supabase } from "../utils/supabase-client";
 
@@ -8,14 +7,12 @@ const Page = async () => {
     try {
       const { data, error } = await supabase
         .from("flashcards")
-        .select("character");
+        .select("character_id , character");
       if (error) {
-        console.log(error.message);
         return null;
       }
       return data;
     } catch (error) {
-      console.error("An unexpected error occurred:", error);
       return null;
     }
   };

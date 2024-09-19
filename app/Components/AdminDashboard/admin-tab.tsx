@@ -11,6 +11,8 @@ import { ImageColumns } from "./image-columns";
 import { LessonPlanSegmentColumns } from "./lesson-plan-column";
 import { LessonPlanProps } from "@/app/types/lesson-plan";
 import { FlashcardProps, StorySegmentProps } from "@/app/lib/type";
+import { FlashCardProps } from "../FlashCard/card-stack-section";
+
 
 export default function AdminPanel({
   LessonPlanData,
@@ -19,7 +21,7 @@ export default function AdminPanel({
 }: {
   StoryData: StorySegmentProps[];
   LessonPlanData: LessonPlanProps[];
-  FlashCardsData : FlashcardProps[]
+  FlashCardsData : FlashcardProps[];
 }) {
   const [value, setValue] = React.useState("2");
 

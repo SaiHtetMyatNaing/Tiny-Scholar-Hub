@@ -143,21 +143,20 @@ const ImageEditForm = ({ formData }: EditFormProps) => {
         />
 
         <Controller
-          name="start_with"
+          name="character"
           control={control}
           render={({ field }) => (
             <TextField
               label="Starts With"
               type="text"
               {...field}
-              error={!!errors.start_with}
-              helperText={errors.start_with?.message}
+              error={!!errors.character}
+              helperText={errors.character?.message}
               fullWidth
             />
           )}
         />
 
-        {/* ... other Controller components for the remaining fields ... */}
       </Stack>
 
       {/* Submit button with styling */}

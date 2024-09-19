@@ -58,7 +58,7 @@ export default function Cards() {
               component={motion.div}
               elevation={3}
               key={i}
-              initial={{ opacity: 0, scale: 0.4 }}
+              initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1 }}
               whileHover={{ scale: 0.9 }}

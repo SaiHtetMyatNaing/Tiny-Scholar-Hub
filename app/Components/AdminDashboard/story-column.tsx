@@ -35,7 +35,7 @@ export const StorySegmentColumns: ColumnDef<StorySegmentProps>[] = [
   {
     header: "Sentences",
     accessorKey: "sentences",
-    minSize: 500,
+    minSize: 600,
 
     cell: ({ row }) => {
       const sentences = row.original.sentences.sentences;
@@ -51,9 +51,9 @@ export const StorySegmentColumns: ColumnDef<StorySegmentProps>[] = [
   {
     header: "Image URL",
     accessorKey: "image",
-    minSize: 100,
+    minSize: 300,
     cell: ({ row }) => {
-      return <Box>{row?.original.image_url}</Box>;
+      return <Box className='max-w-md overflow-x-auto scrollbar-hide'>{row?.original.image_url}</Box>;
     },
   },
   {

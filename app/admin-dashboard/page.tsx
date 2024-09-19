@@ -1,28 +1,25 @@
 import React from "react";
 import AdminPanel from "../Components/AdminDashboard/admin-tab";
 import { supabase } from "../utils/supabase-client";
-import { Container } from "@mui/material";
 
-const page = async () => {
+export default async function Page() {
   const { data: LessonPlanData } = await supabase
     .from("lesson-plan")
     .select("*");
-  const { data: StoryData } = await supabase.from("stories").select("*");
-  const { data: FlashCardsData } = await supabase
+  const { data: FlashcardsData } = await supabase
     .from("flashcards")
-    .select("*");
-
+    .select('character , character_id , id, name_en , name_mm , created_at, updated_at , image_url')
+  const { data: StoryData } = await supabase.from("stories").select("*");
+  
   return (
     <>
-      {LessonPlanData && StoryData && FlashCardsData && (
+      {LessonPlanData && StoryData && FlashcardsData  && (
         <AdminPanel
-          FlashCardsData={FlashCardsData}
+          FlashCardsData={FlashcardsData}
           StoryData={StoryData}
           LessonPlanData={LessonPlanData}
         />
       )}
     </>
   );
-};
-
-export default page;
+}

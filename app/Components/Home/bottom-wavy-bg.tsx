@@ -1,5 +1,5 @@
 "use client";
-import AstronauntIcon from "@/public/icons/astronaunt";
+import AstronauntIcon from "@/public/icons/astronaunts";
 import { motion } from "framer-motion";
 import React from "react";
 

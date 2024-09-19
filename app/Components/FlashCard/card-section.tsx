@@ -6,16 +6,19 @@ import Link from "next/link";
 import React from "react";
 
 export type CharProps = {
-  character: string;
+  character : string,
+  character_id: number;
 };
 
 const CardComponent = ({ data } : {data :CharProps[]}) => {
 
   const uniqueCharacters = Array.from(
-    new Set(data.map((item) => item.character))
+    new Set(data.map((item) => item.character_id))
   ).map((character) => {
-    return data.find((item) => item.character === character);
+    return data.find((item) => item.character_id === character);
   });
+
+  
   return (
     <Container className="flex w-full items-center select-none justify-between gap-3 max-w-5xl flex-wrap">
       <Typography
@@ -28,6 +31,7 @@ const CardComponent = ({ data } : {data :CharProps[]}) => {
       </Typography>
       {data &&
         uniqueCharacters.map((character ,i) => {
+          
           return (
             <Paper
               component={motion.div}
@@ -41,7 +45,7 @@ const CardComponent = ({ data } : {data :CharProps[]}) => {
             >
               <Link
                 key={i}
-                href={`/flashcards/${character?.character}`}
+                href={`/flashcards/${character?.character_id}`}
                 className="cursor-pointerhover:scale-105 flex  flex-col transform transition-all"
               >
                 <Image

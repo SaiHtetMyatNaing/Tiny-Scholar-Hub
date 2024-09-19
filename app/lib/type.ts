@@ -3,7 +3,6 @@ export type WordItem = {
     item: string;
     image : string;
   }
-
   export interface Post {
     userId: number;
     id: number;
@@ -20,11 +19,9 @@ export type WordItem = {
     image_url: string;
   };
 
-
   export type sentenceSegmentProp = {
     sentences : { sentence: string }[]
   }
-
 
 export type FlashcardProps = {
   id: number;
@@ -34,4 +31,5 @@ export type FlashcardProps = {
   name_en: string;
   image_url: string;
   character: string;
+  character_id: number;
 }

@@ -21,25 +21,25 @@ export const ImageColumns: ColumnDef<FlashcardProps>[] = [
     accessorKey: "name_en",
   },
   {
+    header: "Character id",
+    accessorKey: "character_id",
+    cell: ({ row }) => {
+      const character_id = row.original.character_id;
+      return <Box className="flex gap-2">{character_id}</Box>;
+    },
+  },
+  {
     header: "Image Url",
     accessorKey: "image_url",
     maxSize: 100,
   },
   {
-    header: "Start With",
-    accessorKey: "start_with",
+    header: "Character",
+    accessorKey: "character",
     cell: ({ row }) => {
       const character = row.original.character;
       return <Box className="flex gap-2">{character}</Box>;
     },
-  },
-  {
-    header: "Created At",
-    accessorKey: "created_at",
-  },
-  {
-    header: "Updated At",
-    accessorKey: "updated_at",
   },
   {
     header: "Product Control",

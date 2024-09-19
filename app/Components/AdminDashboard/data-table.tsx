@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import * as React from "react";
 
 import Paper from "@mui/material/Paper";
@@ -42,11 +42,11 @@ export function DataTable<TData, TValue>({
     state: {
       globalFilter: debounceFiltering, //To reduce unnecessary rendering
     },
-    defaultColumn : {
-      size : 60
-     }
+    defaultColumn: {
+      size: 60,
+    },
   });
-  
+
   return (
     <TableContainer component={Paper} className="p-2 scrollbar-hide">
       <Box className="flex items-center justify-between mx-auto">
@@ -60,17 +60,19 @@ export function DataTable<TData, TValue>({
         />
       </Box>
       <Table sx={{ minWidth: 1000 }} aria-label="simple table">
-        <TableHead >
+        <TableHead>
           {table.getHeaderGroups().map((headerGroup) => {
             return (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableCell key={header.id}
-                    style={{
-                      width: header.column.getSize(),
-                      minWidth: header.column.columnDef.minSize,
-                    }}>
+                    <TableCell
+                      key={header.id}
+                      style={{
+                        width: header.column.getSize(),
+                        minWidth: header.column.columnDef.minSize,
+                      }}
+                    >
                       {header.isPlaceholder
                         ? null
                         : flexRender(

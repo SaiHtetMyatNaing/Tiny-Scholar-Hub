@@ -7,6 +7,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { register } from "module";
 import { StorySegmentProps } from "@/app/lib/type";
+import { supabase } from "@/app/utils/supabase-client";
 
 // Defining StorySegment schema using Zod
 const storySegmentSchema = z.object({
@@ -44,8 +45,19 @@ const StoryEditForm = ({ formData }: { formData: StorySegmentProps }) => {
     name: "sentences",
   });
 
-  const onSubmit = (data: StoryProps) => {
-    console.log("Submitted segment:", data);
+  const onSubmit = async (formData : StoryProps) => {
+    const { data, error } = await supabase
+      .from("stories")
+      .update({ image_url : formData.image_url })
+      .eq('id' , formData.id)
+      .select();
+
+      if (error) {
+        console.error('Error updating story:', error);
+      } else {
+        console.log('Updated : ' , formData.id);
+        console.log('Story updated successfully:', data);
+      }
   };
 
   return (

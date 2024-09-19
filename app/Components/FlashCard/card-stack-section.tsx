@@ -17,6 +17,7 @@ export type FlashCardProps = {
 };
 
 export default function StackSection({ data }: { data: FlashCardProps[] }) {
+  
   return (
     <motion.div
       initial={{ scale: 0, opacity: 0 }}
@@ -24,6 +25,7 @@ export default function StackSection({ data }: { data: FlashCardProps[] }) {
       transition={{ duration: 0.5 }}
       className="max-w-4xl mx-auto w-[14em] shadow-none h-[20em] sm:w-[20em] sm:h-[25em] md:w-[40em] md:h-[25em] lg:w-[50em] lg:h-[30em]"
     >
+
       <Swiper
         effect={"cards"}
         modules={[EffectCards, Keyboard, Mousewheel]}
@@ -32,8 +34,8 @@ export default function StackSection({ data }: { data: FlashCardProps[] }) {
         slidesPerView={"auto"}
         centeredSlides={true}
         className="flashcards-swiper w-full "
-      >
-        {data && data?.map((word, i) => {
+      >  
+        {data && data.length > 0 && data?.map((word, i) => {
           return (
             <SwiperSlide
               key={i}
