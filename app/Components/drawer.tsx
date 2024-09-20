@@ -14,6 +14,12 @@ import {  DrawRounded } from "@mui/icons-material";
 import { useRouter } from "next/navigation";
 import { useSideBarStore } from "../store/useSideBarStore";
 import MainIcon from "@/public/icons/Logo";
+import HomeIcon from "@/public/icons/homeIcon";
+import WorkbookIcon from "@/public/icons/workbookIcon";
+import FlashcardsIcon from "@/public/icons/flashcardsIcon";
+import LessonPlanIcon from "@/public/icons/lessonplanIcon";
+import AdminDashboardIcon from "@/public/icons/adminIcon";
+import StoryIcon from "@/public/icons/storyIcon";
 
 export default function LeftDrawer() {
   const [open, setOpen] = React.useState(false);
@@ -29,27 +35,27 @@ export default function LeftDrawer() {
   ];
 
   const pages = [
-    { id: 1, title: "Home", path: "/", icon: <DrawRounded />  },
-    { id: 2, title: "Workbook", path: "/workbook", icon: <DrawRounded /> },
-    { id: 3, title: "Flashcards", path: "/flashcards", icon: <DrawRounded /> },
+    { id: 1, title: "Home", path: "/", icon: <HomeIcon/>  },
+    { id: 2, title: "Workbook", path: "/workbook", icon: <WorkbookIcon/>},
+    { id: 3, title: "Flashcards", path: "/flashcards", icon: <FlashcardsIcon/> },
     {
       id: 3,
       title: "Lesson Plan",
       path: "/lesson-plan",
-      icon: <DrawRounded />,
+      icon: <LessonPlanIcon />,
     },
     {
       id: 4,
-      title: "Admin Dashboard",
-      path: "/admin-dashboard",
-      icon: <DrawRounded />,
-    },
-    {
-      id: 5,
       title: "Story Quest",
       path: "/stories",
-      icon: <DrawRounded />,
+      icon: <StoryIcon />,  
     },
+    // {
+    //   id: 5,
+    //   title: "Admin Dashboard",
+    //   path: "/admin-dashboard",
+    //   icon: <AdminDashboardIcon />,
+    // },
   ];
 
   const toggleDrawer = (newOpen: boolean) => () => {
@@ -69,7 +75,7 @@ export default function LeftDrawer() {
                 }}
               >
                 <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  {page.icon}
                 </ListItemIcon>
                 <ListItemText primary={page.title} />
               </ListItemButton>

@@ -19,10 +19,12 @@ export const ImageColumns: ColumnDef<FlashcardProps>[] = [
   {
     header: "English Name",
     accessorKey: "name_en",
+    enableSorting : false,
   },
   {
     header: "Character id",
     accessorKey: "character_id",
+    minSize: 120,
     cell: ({ row }) => {
       const character_id = row.original.character_id;
       return <Box className="flex gap-2">{character_id}</Box>;
@@ -32,13 +34,21 @@ export const ImageColumns: ColumnDef<FlashcardProps>[] = [
     header: "Image Url",
     accessorKey: "image_url",
     maxSize: 100,
+    cell: ({ row }) => {
+      const image_url = row.original.image_url;
+      return (
+        <Box className="flex gap-2 max-w-md overflow-scroll scrollbar-hide cursor-pointer">
+          {image_url}
+        </Box>
+      );
+    },
   },
   {
     header: "Character",
     accessorKey: "character",
     cell: ({ row }) => {
       const character = row.original.character;
-      return <Box className="flex gap-2">{character}</Box>;
+      return <Box className="flex gap-2 cursor-pointer">{character}</Box>;
     },
   },
   {
@@ -47,8 +57,8 @@ export const ImageColumns: ColumnDef<FlashcardProps>[] = [
     cell: ({ row }) => {
       return (
         <Box className="flex gap-2">
-          <EditDialogSlide dialogTitle="Edit">
-            <ImageEditForm formData={row.original} />
+          <EditDialogSlide dialogTitle="Update">
+            <ImageEditForm formData={row.original}/>
           </EditDialogSlide>
           <DeleteDialog id={row.original.id} />
         </Box>

@@ -5,6 +5,7 @@ import WordSearchTemplate from "./word-search-section";
 import PictionarySection from "./pictionary-section";
 import WorkSheetFooter from "../workbook-footer";
 import ListeningSection from "./listening-section";
+import { FlashcardProps } from "@/app/lib/type";
 
 const WBPageOne = () => {
   return (

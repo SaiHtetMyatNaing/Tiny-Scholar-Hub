@@ -8,6 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import WBPageOne from "./WorkBookPageOne/workbook-page-one";
 import WBPageTwo from "./WorkBookPageTwo/workbook-page-two";
 import { motion} from "framer-motion";
+import { FlashcardProps } from "@/app/lib/type";
 
 const MyanmarAlphabetWorkbook = () => {
   return (
@@ -26,7 +27,7 @@ const MyanmarAlphabetWorkbook = () => {
         className="mySwiper"
       >
         <SwiperSlide>
-          <WBPageOne />
+          <WBPageOne/>
         </SwiperSlide>
         <SwiperSlide>
           <WBPageTwo />

@@ -1,9 +1,14 @@
+"use client";
 import { useForm, Controller } from "react-hook-form";
 import { Button, Stack, TextField, Box } from "@mui/material";
 import { z } from "zod";
 import { EditFormSchema } from "@/app/schema/form-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FlashcardProps } from "@/app/lib/type";
+import { supabase } from "@/app/utils/supabase-client";
+import Toaster from "../toaster";
+import { useState } from "react";
+import { useDataMutationStore } from "@/app/store/useDataMutationStore";
 
 // Define the type for the form data based on the Zod schema
 type FormData = z.infer<typeof EditFormSchema>;
@@ -15,6 +20,7 @@ export interface EditFormProps {
 }
 
 const ImageEditForm = ({ formData }: EditFormProps) => {
+  const [trigger, setTrigger] = useState<boolean>(false);
   // Initialize the react-hook-form with Zod schema validation and default values
   const {
     register,
@@ -24,15 +30,44 @@ const ImageEditForm = ({ formData }: EditFormProps) => {
     formState: { errors },
   } = useForm<FormData>({
     defaultValues: {
-      ...formData
+      ...formData,
     },
     resolver: zodResolver(EditFormSchema), // Use Zod for schema validation
   });
 
+  const setHandleDataUpdate = useDataMutationStore(
+    (state) => state.handleDataUpdate
+  );
   // Function to handle form submission
-  const onFormSubmit = (value: FormData) => {
-    console.log(value); // Log the submitted form data
-    reset(); // Reset the form after submission
+  const onFormSubmit = async (value: FormData) => {
+    // Reset the form after submission
+    try {
+      // Assuming 'id' is the primary key or a unique identifier for the flashcard
+      const { data, error } = await supabase
+        .from("flashcards")
+        .update({
+          name_mm: value.name_mm,
+          name_en: value.name_en,
+          image_url: value.image_url,
+          character: value.character,
+        })
+        .eq("id", value.id)
+        .select();
+
+      if (error) {
+        setTrigger(!trigger);
+
+        console.error("Error updating flashcard:", error);
+        // Optionally, display a more user-friendly error message
+      } else {
+        setTrigger(!trigger);
+        setHandleDataUpdate;
+
+        console.log("Flashcard updated successfully:", data);
+      }
+    } catch (error) {
+      console.error("Unexpected error during flashcard update:", error);
+    }
   };
 
   return (
@@ -98,21 +133,6 @@ const ImageEditForm = ({ formData }: EditFormProps) => {
         />
 
         <Controller
-          name="name_mm"
-          control={control}
-          render={({ field }) => (
-            <TextField
-              label="Name_mm"
-              type="text"
-              {...field}
-              error={!!errors.name_mm}
-              helperText={errors.name_mm?.message}
-              fullWidth
-            />
-          )}
-        />
-
-        <Controller
           name="image_url"
           control={control}
           render={({ field }) => (
@@ -156,7 +176,6 @@ const ImageEditForm = ({ formData }: EditFormProps) => {
             />
           )}
         />
-
       </Stack>
 
       {/* Submit button with styling */}
@@ -174,6 +193,20 @@ const ImageEditForm = ({ formData }: EditFormProps) => {
       >
         Submit
       </Button>
+      {trigger && (
+        <Toaster
+          status="success"
+          trigger={trigger}
+          description="Successfully updated!"
+        />
+      )}
+      {!trigger && (
+        <Toaster
+          status="error"
+          trigger={trigger}
+          description="Unexpected error occur!"
+        />
+      )}
     </Box>
   );
 };

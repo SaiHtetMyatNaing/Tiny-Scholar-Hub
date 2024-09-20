@@ -7,6 +7,7 @@ import {
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
+  getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
 import {
@@ -38,7 +39,9 @@ export function DataTable<TData, TValue>({
     columns,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
+    getSortedRowModel : getSortedRowModel(),
     onGlobalFilterChange: setFiltering,
+    enableSorting : false,
     state: {
       globalFilter: debounceFiltering, //To reduce unnecessary rendering
     },
@@ -48,7 +51,7 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <TableContainer component={Paper} className="p-2 scrollbar-hide">
+    <TableContainer component={Paper} className="p-2 h-dvh scrollbar-hide">
       <Box className="flex items-center justify-between mx-auto">
         <TextField
           type="text"
@@ -61,9 +64,9 @@ export function DataTable<TData, TValue>({
       </Box>
       <Table sx={{ minWidth: 1000 }} aria-label="simple table">
         <TableHead>
-          {table.getHeaderGroups().map((headerGroup) => {
+          {table.getHeaderGroups().map((headerGroup , index) => {
             return (
-              <TableRow key={headerGroup.id}>
+              <TableRow key={index}>
                 {headerGroup.headers.map((header) => {
                   return (
                     <TableCell
@@ -88,8 +91,8 @@ export function DataTable<TData, TValue>({
         </TableHead>
         <TableBody>
           {table.getRowModel().rows.length ? (
-            table.getRowModel().rows.map((row) => (
-              <TableRow key={row.id}>
+            table.getRowModel().rows.map((row ,index) => (
+              <TableRow key={index}>
                 {row.getVisibleCells().map((cell) => (
                   <TableCell key={cell.id}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}

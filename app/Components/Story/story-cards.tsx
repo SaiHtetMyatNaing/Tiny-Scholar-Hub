@@ -55,7 +55,7 @@ const StoryCards = ({ data }: { data: StoryCardProps[] }) => {
                     height={200}
                   />
                 )}
-                <Box className="text-xl">{story?.title}</Box>
+                <Box className="text-lg mt-3">{story?.title}</Box>
               </Link>
             </Paper>
           );

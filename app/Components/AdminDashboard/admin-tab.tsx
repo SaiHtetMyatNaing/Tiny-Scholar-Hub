@@ -11,19 +11,13 @@ import { ImageColumns } from "./image-columns";
 import { LessonPlanSegmentColumns } from "./lesson-plan-column";
 import { LessonPlanProps } from "@/app/types/lesson-plan";
 import { FlashcardProps, StorySegmentProps } from "@/app/lib/type";
-import { FlashCardProps } from "../FlashCard/card-stack-section";
+import { supabase } from "@/app/utils/supabase-client";
+import useSWR from "swr";
+import { useDataMutationStore } from "@/app/store/useDataMutationStore";
 
 
-export default function AdminPanel({
-  LessonPlanData,
-  StoryData,
-  FlashCardsData,
-}: {
-  StoryData: StorySegmentProps[];
-  LessonPlanData: LessonPlanProps[];
-  FlashCardsData : FlashcardProps[];
-}) {
-  const [value, setValue] = React.useState("2");
+export default function AdminPanel() {
+  const [value, setValue] = React.useState("1");
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
@@ -40,13 +34,13 @@ export default function AdminPanel({
           </TabList>
         </Box>
         <TabPanel value="1">
-          <DataTable columns={ImageColumns} data={FlashCardsData} />
+          {/* <DataTable  columns={ImageColumns} data={FlashcardsData | []}/> */}
         </TabPanel>
         <TabPanel value="2">
-          <DataTable columns={StorySegmentColumns} data={StoryData} />
+          {/* <StoryData && <DataTable  columns={StorySegmentColumns} data={data.StoryData} /> */}
         </TabPanel>
         <TabPanel value="3">
-          <DataTable columns={LessonPlanSegmentColumns} data={LessonPlanData} />
+          {/* {data?.LessonPlanData && <DataTable  columns={LessonPlanSegmentColumns} data={data.LessonPlanData} />} */}
         </TabPanel>
       </TabContext>
     </Box>

@@ -4,10 +4,12 @@ import CardSection from "../Components/LessonPlan/cards-section";
 import { supabase } from "../utils/supabase-client";
 import { LessonPlanProps } from "../types/lesson-plan";
 
+export const revalidate = 0
+
 const page = async () => {
   const fetchData = async () => {
     try {
-      const { data, error } = await supabase.from("lesson-plan").select("*");
+      const { data, error } = await supabase.from("lesson-plan").select("*");;
       if (error) {
         console.log(error.message);
         return null;
@@ -15,6 +17,7 @@ const page = async () => {
       return data;
     } catch (error) {
       console.error("An unexpected error occurred:", error);
+
       return null;
     }
   };
