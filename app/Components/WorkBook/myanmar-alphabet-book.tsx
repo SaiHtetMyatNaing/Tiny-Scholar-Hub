@@ -23,12 +23,11 @@ export function removeDuplicates(data: DataProps[]): DataProps[] {
 
   return Array.from(uniqueMap.values());
 }
-const MyanmarAlphabetWorkbook = () => {
+const MyanmarAlphabetWorkbook = ({data} : {data : DataProps[]}) => {
 
-  const data = useDataStore((state)=> state.data)
 
   const char = data && removeDuplicates(data);
-  char && console.log(char);
+
   
   return (
     <motion.div

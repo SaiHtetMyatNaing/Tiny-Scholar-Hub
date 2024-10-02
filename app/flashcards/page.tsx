@@ -9,7 +9,8 @@ const Page = async () => {
     try {
       const { data, error } = await supabase
         .from("flashcards")
-        .select("id ,character_id, character , image_url , name_mm");
+        .select("id ,character_id, character , image_url , name_mm")
+        .order('character_id', { ascending: true });
       if (error) {
         return null;
       }
