@@ -1,16 +1,21 @@
 "use client";
+import { DataProps, useDataStore } from "@/app/store/useFlashcardData";
 import { Box, Container, Paper, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 
 export type CharProps = {
+  id: number ,
   character : string,
-  character_id: number;
+  character_id: number,
+  image_url : string,
 };
 
-const CardComponent = ({ data } : {data :CharProps[]}) => {
+const CardComponent = ({ data } : {data : DataProps[]}) => {
+
+  const setData = useDataStore((state)=> state.setData);
 
   const uniqueCharacters = Array.from(
     new Set(data.map((item) => item.character_id))
@@ -18,6 +23,11 @@ const CardComponent = ({ data } : {data :CharProps[]}) => {
     return data.find((item) => item.character_id === character);
   });
 
+  useEffect(() => {
+    if (data && data.length > 0) {
+      setData(data);
+    }
+  }, [data, setData]);
   
   return (
     <Container className="flex w-full items-center select-none justify-between gap-3 max-w-5xl flex-wrap">
@@ -46,15 +56,17 @@ const CardComponent = ({ data } : {data :CharProps[]}) => {
               <Link
                 key={i}
                 href={`/flashcards/${character?.character_id}`}
-                className="cursor-pointerhover:scale-105 flex  flex-col transform transition-all"
+                className="cursor-pointerhover:scale-105 flex   flex-col transform transition-all"
               >
-                <Image
-                  src="/caterpillar_က.png"
+               {character?.image_url && 
+                  <Image
+                  src={character?.image_url}
                   alt="crane_picture"
-                  className="object-cover"
+                  className="object-cover w-48"
                   width={200}
                   height={200}
-                />
+                  loading="lazy"
+                />}
                 <Box className="text-xl">{character?.character}</Box>
               </Link>
             </Paper>

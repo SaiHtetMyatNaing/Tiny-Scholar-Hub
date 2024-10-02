@@ -8,6 +8,8 @@ interface FlashCardsPageParams {
   slug: number;
 }
 
+export const revalidate = 0;
+
 const FlashCardsPage: React.FC<{ params: FlashCardsPageParams }> = async ({
   params,
 }) => {

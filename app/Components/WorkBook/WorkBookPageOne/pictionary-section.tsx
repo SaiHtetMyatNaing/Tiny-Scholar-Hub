@@ -6,26 +6,16 @@ import Image from "next/image";
 import { Box } from "@mui/material";
 import { VolumeUp } from "@mui/icons-material";
 import Grid from '@mui/material/Grid2';
+import { DataProps } from "@/app/store/useFlashcardData";
 
 
-const PictionarySection = () => {
-  const [words] = useState<WordItem[]>([
-    { id: 1, item: "ကဏန်း", image: "/crab_က.png" },
-    { id: 2, item: "ကရိန်းစက်", image: "/crane_က.png" },
-    { id: 3, item: "ကတိုးကောင်", image: "/caterpillar_က.png" },
-    {
-      id: 4,
-      item: "ကယောင် ချောက်ချား",
-      image: "/hallucination_က.png",
-    },
-    { id: 5, item: "ကလေးငယ်", image: "/child_က.png" },
-    { id: 6, item: "ကလောင်တံ", image: "/pen_က.png" },
-  ]);
+const PictionarySection = ({data} : {data : DataProps[]}) => {
+
   const questions = "အောက်ပါစကားလုံးများကို အသံထွက်ဖတ်ပါ။";
 
   function colorFirstChar(str: string): ReactNode {
-    const firstChar = str.charAt(0);
-    const restOfStr = str.substring(1);
+    const firstChar =  str.charAt(0);
+    const restOfStr =  str.substring(1);
     return (
       <div>
         <span className="text-red-500">{firstChar}</span>
@@ -46,16 +36,16 @@ const PictionarySection = () => {
       </Box>
 
       <Grid container className='mx-auto'>
-      {words.map((word) => {
+      {data && data.map((item) => {
         return (
           <Grid
             size={4}
-            key={word.id}
-            onClick={() => speakText(word.item)}
+            key={item.id}
+            onClick={() => speakText(item.name_mm)}
             className="text-[16px] mt-6"
           >
-            <Image src={word.image} alt="word-image" height={100} width={100} className="w-20 cursor-pointer sm:w-24" />
-            <span className="sm:text-[1em]">{colorFirstChar(word.item)}</span>
+            <Image src={item.image_url || '/Logo.png'} alt="word-image" height={100} width={100} className="w-20  h-20 cursor-pointer sm:w-24 sm:h-24" />
+            <span className="sm:text-[1em]">{colorFirstChar(item.name_mm)}</span>
           </Grid>
         );
       })}

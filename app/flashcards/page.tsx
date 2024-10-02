@@ -1,13 +1,15 @@
 import { Container } from "@mui/material";
-import CardComponent, { CharProps } from "../Components/FlashCard/card-section";
+import CardComponent from "../Components/FlashCard/card-section";
 import { supabase } from "../utils/supabase-client";
+import { DataProps } from "../store/useFlashcardData";
+
 
 const Page = async () => {
   const fetchData = async () => {
     try {
       const { data, error } = await supabase
         .from("flashcards")
-        .select("character_id , character");
+        .select("id ,character_id, character , image_url , name_mm");
       if (error) {
         return null;
       }
@@ -17,8 +19,8 @@ const Page = async () => {
     }
   };
 
-  const FlashcardsData : CharProps[] | null = await fetchData();
-  
+  const FlashcardsData : DataProps[] | null = await fetchData();
+
   return (
     <Container>
       {FlashcardsData && <CardComponent data={FlashcardsData} />}

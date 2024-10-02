@@ -8,7 +8,7 @@ import { Box, Stack } from "@mui/material";
 import Skeleton from "@mui/material/Skeleton";
 import { myanmarAlphabet } from "@/app/lib/myanmar-alphabets";
 
-const WordSearchTemplate = ({ word }: { word: string }) => {
+const WordSearchTemplate = ({ word }: { word: string}) => {
   const numbers = Array.from({ length: 30 });
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [correctAnswers, setCorrectAnswers] = useState<number[]>([]);

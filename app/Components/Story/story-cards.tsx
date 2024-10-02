@@ -8,6 +8,7 @@ export type StoryCardProps = {
   story_id: number;
   image_url: string;
   title: string;
+  proverb : string;
 };
 
 const StoryCards = ({ data }: { data: StoryCardProps[] }) => {
@@ -55,7 +56,7 @@ const StoryCards = ({ data }: { data: StoryCardProps[] }) => {
                     height={200}
                   />
                 )}
-                <Box className="text-lg mt-3">{story?.title}</Box>
+                <Box className="text-lg mt-3">{story?.proverb}</Box>
               </Link>
             </Paper>
           );

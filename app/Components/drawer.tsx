@@ -39,16 +39,16 @@ export default function LeftDrawer() {
     { id: 2, title: "Workbook", path: "/workbook", icon: <WorkbookIcon/>},
     { id: 3, title: "Flashcards", path: "/flashcards", icon: <FlashcardsIcon/> },
     {
-      id: 3,
-      title: "Lesson Plan",
-      path: "/lesson-plan",
-      icon: <LessonPlanIcon />,
-    },
-    {
       id: 4,
       title: "Story Quest",
       path: "/stories",
       icon: <StoryIcon />,  
+    },
+    {
+      id: 5,
+      title: "Lesson Plan",
+      path: "/lesson-plan",
+      icon: <LessonPlanIcon />,
     },
     // {
     //   id: 5,

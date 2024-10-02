@@ -5,6 +5,9 @@ import Image from "next/image";
 import WorksheetHeader from "../workbook-header";
 import MatchingSection from "./matching-section";
 import WorkSheetFooter from "../workbook-footer";
+import ListeningSection from "../WorkBookPageOne/listening-section";
+import { FlashcardProps } from "@/app/lib/type";
+import { DataProps } from "@/app/store/useFlashcardData";
 
 interface DataRecord {
   created_at: string | null;
@@ -15,10 +18,10 @@ interface DataRecord {
   svg_content: string | null;
   updated_at: string | null;
 }
-const WBPageTwo = () => {
-    const [ item , setItem ] = useState<DataRecord[] | null>(null);
-  
 
+const WBPageTwo = ({  data} : {  data : DataProps[]}) => {
+    const [ item , setItem ] = useState<DataRecord[] | null>(null);
+    
   return (
     <Box className="border-[#ffd700] rounded-md  flex flex-col gap-4 justify-center mx-auto max-w-3xl border-[2px] mt-7 p-1 px-3">
       <WorksheetHeader />
@@ -29,7 +32,7 @@ const WBPageTwo = () => {
             </div>
           )
         })}
-      <MatchingSection />
+        <ListeningSection data={data}/>
       <WorkSheetFooter />
     </Box>
   );

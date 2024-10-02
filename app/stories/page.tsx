@@ -12,7 +12,7 @@ const page = async () => {
     try {
       const { data, error } = await supabase
         .from("stories")
-        .select("story_id , image_url  , title");
+        .select("story_id , image_url  , title , proverb");
       if (error) {
         console.log(error.message);
         return null;

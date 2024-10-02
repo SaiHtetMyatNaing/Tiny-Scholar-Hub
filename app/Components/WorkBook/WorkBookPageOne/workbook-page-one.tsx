@@ -5,19 +5,25 @@ import WordSearchTemplate from "./word-search-section";
 import PictionarySection from "./pictionary-section";
 import WorkSheetFooter from "../workbook-footer";
 import ListeningSection from "./listening-section";
-import { FlashcardProps } from "@/app/lib/type";
+import MatchingSection from "../WorkBookPageTwo/matching-section";
+import { DataProps } from "@/app/store/useFlashcardData";
 
-const WBPageOne = () => {
+const WBPageOne = ({
+  character,
+  data,
+}: {
+  character: string;
+  data: DataProps[];
+}) => {
   return (
     <Box className="border-[#ffd700] rounded-md flex flex-col gap-4 justify-center mx-auto max-w-3xl border-[2px] mt-7 p-1 px-3">
       <WorksheetHeader />
 
       <Box className="flex flex-wrap  gap-5 sm:flex-nowrap">
-        <WordSearchTemplate word="က" />
-        <PictionarySection />
+        <WordSearchTemplate word={character} />
+        <PictionarySection data={data} />
       </Box>
-
-      <ListeningSection />
+      <MatchingSection character={character}/>
       <WorkSheetFooter />
     </Box>
   );
