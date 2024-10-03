@@ -7,28 +7,29 @@ import Link from "next/link";
 import React, { useEffect } from "react";
 
 export type CharProps = {
-  id: number ,
-  character : string,
-  character_id: number,
-  image_url : string,
+  id: number;
+  character: string;
+  character_id: number;
+  image_url: string;
 };
 
-const CardComponent = ({ data } : {data : DataProps[]}) => {
+const CardComponent = ({
+  data,
+  path,
+  title,
+}: {
+  data: DataProps[];
+  path: string;
+  title: string;
+}) => {
+  const uniqueCharacters =
+    data &&
+    Array.from(new Set(data.map((item) => item.character_id))).map(
+      (character) => {
+        return data.find((item) => item.character_id === character);
+      }
+    );
 
-  const setData = useDataStore((state)=> state.setData);
-
-  const uniqueCharacters = Array.from(
-    new Set(data.map((item) => item.character_id))
-  ).map((character) => {
-    return data.find((item) => item.character_id === character);
-  });
-
-  useEffect(() => {
-    if (data && data.length > 0) {
-      setData(data);
-    }
-  }, [data, setData]);
-  
   return (
     <Container className="flex w-full items-center select-none justify-between gap-3 max-w-5xl flex-wrap">
       <Typography
@@ -37,11 +38,11 @@ const CardComponent = ({ data } : {data : DataProps[]}) => {
         animate={{ opacity: 1 }}
         className="w-full text-center z-10 left-0 text-xl mt-3 mb-4 sm:text-2xl md:text-3xl text-black/25"
       >
-        {"Alphabet Learning Cards"}
+        {title}
       </Typography>
       {data &&
-        uniqueCharacters.map((character ,i) => {
-          
+        data.length > 0 &&
+        uniqueCharacters.map((character, i) => {
           return (
             <Paper
               component={motion.div}
@@ -55,18 +56,19 @@ const CardComponent = ({ data } : {data : DataProps[]}) => {
             >
               <Link
                 key={i}
-                href={`/flashcards/${character?.character_id}`}
+                href={`/${path}/${character?.character_id}`}
                 className="cursor-pointerhover:scale-105 flex   flex-col transform transition-all"
               >
-               {character?.image_url && 
+                {character?.image_url && character.image_url && (
                   <Image
-                  src={character?.image_url}
-                  alt="crane_picture"
-                  className="object-cover w-48"
-                  width={200}
-                  height={200}
-                  loading="lazy"
-                />}
+                    src={character?.image_url}
+                    alt="crane_picture"
+                    className="object-cover w-48"
+                    width={200}
+                    height={200}
+                    priority
+                  />
+                )}
                 <Box className="text-xl">{character?.character}</Box>
               </Link>
             </Paper>

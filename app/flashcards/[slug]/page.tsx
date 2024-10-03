@@ -17,6 +17,7 @@ const FlashCardsPage: React.FC<{ params: FlashCardsPageParams }> = async ({
     .from("flashcards")
     .select("name_mm , image_url, character")
     .eq("character_id", params.slug);
+    
       
   return (
     <Container className="mt-[10em] max-w-2xl flex items-center justify-center">

@@ -1,6 +1,5 @@
 'use client'
 import React, { ReactNode, useState } from "react";
-import { WordItem } from "@/app/lib/type";
 import { speakText } from "@/app/lib/myanmar-speect";
 import Image from "next/image";
 import { Box } from "@mui/material";
