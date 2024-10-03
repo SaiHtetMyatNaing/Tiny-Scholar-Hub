@@ -8,57 +8,54 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import WBPageOne from "./WorkBookPageOne/workbook-page-one";
 import WBPageTwo from "./WorkBookPageTwo/workbook-page-two";
 import { motion } from "framer-motion";
-import { DataProps, useDataStore } from "@/app/store/useFlashcardData";
+import { DataProps } from "@/app/store/useFlashcardData";
 
-export function removeDuplicates(data: DataProps[]): DataProps[] {
-  const uniqueMap = new Map<string, DataProps>();
+export function getUniqueOrderedCharacters(data: DataProps[]): string[] {
+  const uniqueChars = new Set<string>();
+  const orderedChars: string[] = [];
 
   data && data.forEach(item => {
-      // Check if the character is already in the map
-      if (!uniqueMap.has(item.character)) {
-          // If not, add it to the map
-          uniqueMap.set(item.character, item);
-      }
+    if (!uniqueChars.has(item.character)) {
+      uniqueChars.add(item.character);
+      orderedChars.push(item.character);
+    }
   });
 
-  return Array.from(uniqueMap.values());
+  return orderedChars;
 }
+
 const MyanmarAlphabetWorkbook = ({data} : {data : DataProps[]}) => {
+  const uniqueOrderedChars = data && getUniqueOrderedCharacters(data);
 
-
-  const char = data && removeDuplicates(data);
-
-  
   return (
     <motion.div
       initial={{ opacity: 0, y: 60 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      className="relative w-full"
+      className="relative w-full  h-full"
     >
       <Swiper
         cssMode={true}
         navigation={true}
-        pagination={true}
         mousewheel={true}
         keyboard={true}
-        modules={[Navigation, Pagination, Mousewheel, Keyboard]}
+        modules={[Navigation, Mousewheel, Keyboard]}
         className="mySwiper"
       >
-        {data && data.length > 0 &&   char && char.map((item, index) => {
+        {data && data.length > 0 && uniqueOrderedChars && uniqueOrderedChars.map((char, index) => {
             const filteredData = data.filter(
-              (dataItem) => dataItem.character === item.character
+              (dataItem) => dataItem.character === char
             );
+            
             return [
-              <SwiperSlide key={`$page1-${index}`}>
-                <WBPageOne character={item.character} data={filteredData} />
+              <SwiperSlide key={`page1-${index}`}>
+                <WBPageOne character={char} data={filteredData} />
               </SwiperSlide>,
-              <SwiperSlide key={`$page2-${index}`}>
-                <WBPageTwo data={filteredData} />
+              <SwiperSlide key={`page2-${index}`}>
+                <WBPageTwo data={filteredData} char={char} />
               </SwiperSlide>
             ];
           })}
-
       </Swiper>
     </motion.div>
   );

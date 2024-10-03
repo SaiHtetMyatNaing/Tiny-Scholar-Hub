@@ -6,7 +6,7 @@ export type DataProps = {
     name_mm : string,
     character : string,
     character_id: number,
-    image_url : string,
+    image_url ?: string,
   };
 
 

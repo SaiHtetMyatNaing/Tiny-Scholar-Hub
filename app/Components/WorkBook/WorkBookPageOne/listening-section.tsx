@@ -7,14 +7,14 @@ import { englishNumeralToMyanmar } from "@/app/lib/myanmar-numerals";
 import { speakText } from "@/app/lib/myanmar-speect";
 import {shuffle} from 'lodash'
 import { VolumeUp } from "@mui/icons-material";
-import { WorkBookPageOneProps } from "@/app/workbook/page";
+import { DataProps } from "@/app/store/useFlashcardData";
 
-const ListeningSection = ({data} : {data : WorkBookPageOneProps[]}) => {
+const ListeningSection = ({data} : {data : DataProps[]}) => {
 
   const instruction = "အသံဖိုင်ကို နားထောင်ပြီး ပုံကို နံပါတ်တပ်ပါ။";
    // Use useMemo to ensure shuffling happens once and stays consistent
-  const shuffleWords  : WorkBookPageOneProps[]= useMemo(()=> shuffle(data) , [data]);
-  const shufflePics : WorkBookPageOneProps[] = useMemo(()=> shuffle(data) , [data]) ;
+  const shuffleWords  : DataProps[]= useMemo(()=> shuffle(data) , [data]);
+  const shufflePics : DataProps[] = useMemo(()=> shuffle(data) , [data]) ;
 
   const generateInstructions = useCallback((): string => {
     return shuffleWords

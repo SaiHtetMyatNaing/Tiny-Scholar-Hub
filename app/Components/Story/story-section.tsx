@@ -65,7 +65,7 @@ export default function StorySection({data} : {data: StorySegmentProps[]}) {
                 <Box className="w-[20em] h-[20em]">
                   {story && story.image_url && <Image
                     src={story.image_url}
-                    alt="hello"
+                    alt={story.title}
                     className="object-contain w-full h-full"
                     width={200}
                     height={200}
